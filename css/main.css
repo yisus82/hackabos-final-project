@@ -1,36 +1,48 @@
 /* Generic styles */
 
-main h2 {
-  display: none;
-}
-
 main {
   display: flex;
   flex-direction: column;
+  width: 100vw;
+}
+
+main h2 {
+  text-align: center;
+}
+
+main .reviews {
+  flex-grow: 1;
 }
 
 section {
-  border: 1px solid lightgrey;
-  margin: 0 auto;
+  border: 1px solid white;
+  margin: 1rem auto;
   width: 90%;
 }
 
 section header {
+  background-color: #0933bd;
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-section h1 {
+section header h1 {
   text-align: center;
 }
 
-section header img {
-  border: 1px solid lightgrey;
-  display: block;
-  margin: 0 auto;
-  order: -1;
-  width: 100%;
+section header p {
+  padding: 0 1rem;
+  text-align: center;
+}
+
+section header a {
+  padding: 0;
+  text-decoration: none;
+}
+
+section header a:hover {
+  text-decoration: underline;
 }
 
 section p {
@@ -38,35 +50,21 @@ section p {
   padding: 1rem;
 }
 
-.products {
-  border: none;
-}
-
-.products .text {
-  display: flex;
-}
-
-.text p {
+section a {
+  display: inline-block;
   padding: 1rem;
-}
-
-.text img {
-  margin: 1rem;
 }
 
 /* Big screens */
 
 @media (min-width: 800px) {
-  main h2 {
-    display: block;
-  }
-
   .reviews {
     display: flex;
+    flex-wrap: wrap;
   }
 
   .reviews section {
-    margin: 1rem;
-    width: 50%;
+    margin: 1rem auto;
+    width: 45%;
   }
 }

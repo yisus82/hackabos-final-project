@@ -8,6 +8,7 @@ body {
   color: white;
   font-family: 'Play', sans-serif;
   min-height: 100vh;
+  min-width: 200px;
   width: 100vw;
 }
 
@@ -25,44 +26,35 @@ a {
 
 .main-header ul {
   display: flex;
-  justify-content: center;
+  flex-wrap: wrap;
   list-style-type: none;
+  margin: 1rem;
+  padding: 0;
 }
 
 .main-header li {
-  margin: 0 auto 1rem;
+  flex-grow: 1;
+  margin: 1rem;
 }
 
 .main-header a {
   background-color: #0080ff;
   color: white;
   display: inline-block;
-  min-width: 20vw;
   padding: 0.6rem;
   text-align: center;
   text-decoration: none;
+  width: 100%;
 }
 
 .main-header #logo {
-  margin: 1.5rem 2.5rem;
+  width: 100vw;
+  margin: 0 auto 1rem;
 }
 
 .main-header .logo {
   width: 20vw;
-}
-
-main {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
-
-main h2 {
-  text-align: center;
-}
-
-main .reviews {
-  flex-grow: 1;
+  min-width: 200px;
 }
 
 footer {
@@ -72,8 +64,13 @@ footer {
   width: 100%;
 }
 
+footer a {
+  text-decoration: none;
+}
+
 .copyright {
   text-align: center;
+  margin: 0 2rem;
 }
 
 .copyright p:first-child {
@@ -93,14 +90,24 @@ footer {
     min-height: 100vh;
   }
 
+  .main-header #logo {
+    margin: 0 auto 2rem;
+    width: 100%;
+  }
+
   .main-header ul {
     display: flex;
     flex-direction: column;
-    margin: 0;
+    padding: 0;
   }
 
   .main-header li {
-    margin: 0 1rem 1rem 0;
+    min-width: 200px;
+  }
+
+  .main-header li a {
+    display: inline-block;
+    min-width: 180px;
   }
 
   footer {
