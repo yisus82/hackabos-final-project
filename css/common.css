@@ -1,0 +1,116 @@
+@import './normalize.css';
+@import url('https://fonts.googleapis.com/css?family=Play');
+
+/* Generic styles */
+
+body {
+  background-color: #0080ff;
+  color: white;
+  font-family: 'Play', sans-serif;
+  min-height: 100vh;
+  width: 100vw;
+}
+
+a {
+  color: white;
+}
+
+.main-header {
+  background-color: #003cff;
+}
+
+.main-header h1 {
+  font-size: 0;
+}
+
+.main-header ul {
+  display: flex;
+  justify-content: center;
+  list-style-type: none;
+}
+
+.main-header li {
+  margin: 0 auto 1rem;
+}
+
+.main-header a {
+  background-color: #0080ff;
+  color: white;
+  display: inline-block;
+  min-width: 20vw;
+  padding: 0.6rem;
+  text-align: center;
+  text-decoration: none;
+}
+
+.main-header #logo {
+  margin: 1.5rem 2.5rem;
+}
+
+.main-header .logo {
+  width: 20vw;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+main h2 {
+  text-align: center;
+}
+
+main .reviews {
+  flex-grow: 1;
+}
+
+footer {
+  background-color: #1273ce;
+  display: flex;
+  padding: 1rem;
+  width: 100%;
+}
+
+.copyright {
+  text-align: center;
+}
+
+.copyright p:first-child {
+  font-weight: bold;
+}
+
+/* Big screens */
+
+@media (min-width: 800px) {
+  body {
+    display: flex;
+  }
+
+  .main-header {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+  }
+
+  .main-header ul {
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+  }
+
+  .main-header li {
+    margin: 0 1rem 1rem 0;
+  }
+
+  footer {
+    flex-direction: column;
+  }
+
+  footer ul {
+    display: flex;
+    justify-content: space-around;
+    list-style-type: none;
+    margin: 1.5rem;
+  }
+}
