@@ -7,6 +7,7 @@ main {
 }
 
 main h2 {
+  font-size: 2rem;
   text-align: center;
 }
 
@@ -57,10 +58,15 @@ section a {
 
 /* Big screens */
 
-@media (min-width: 800px) {
+@media (min-width: 1000px) {
+  main h2 {
+    margin-left: 20vw;
+  }
+
   .reviews {
     display: flex;
     flex-wrap: wrap;
+    margin-left: 20vw;
   }
 
   .reviews section {
