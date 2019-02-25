@@ -59,14 +59,13 @@ section a {
 /* Big screens */
 
 @media (min-width: 1000px) {
-  main h2 {
+  main {
     margin-left: 20vw;
   }
 
   .reviews {
     display: flex;
     flex-wrap: wrap;
-    margin-left: 20vw;
   }
 
   .reviews section {

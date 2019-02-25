@@ -88,9 +88,8 @@ footer a {
     display: flex;
     flex-direction: column;
     height: 100vh;
-    max-width: 300px;
+    max-width: 20vw;
     position: fixed;
-    width: 20vw;
   }
 
   .main-header .logo-link {
