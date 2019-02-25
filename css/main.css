@@ -1,20 +1,5 @@
 /* Generic styles */
 
-main {
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
-}
-
-main h2 {
-  font-size: 2rem;
-  text-align: center;
-}
-
-main .reviews {
-  flex-grow: 1;
-}
-
 section {
   border: 1px solid white;
   margin: 1rem auto;
@@ -46,12 +31,12 @@ section header a:hover {
   text-decoration: underline;
 }
 
-section p {
+section > p {
   max-width: 100%;
   padding: 1rem;
 }
 
-section a {
+section > a {
   display: inline-block;
   padding: 1rem;
 }
@@ -59,10 +44,6 @@ section a {
 /* Big screens */
 
 @media (min-width: 1000px) {
-  main {
-    margin-left: 20vw;
-  }
-
   .reviews {
     display: flex;
     flex-wrap: wrap;
