@@ -57,13 +57,15 @@ a {
 }
 
 .main-header .logo-link {
+  min-height: 100px;
+  max-height: 15vh;
+  margin-bottom: 1rem;
   width: 100vw;
-  margin: 0 auto 1rem;
 }
 
 .main-header .logo {
-  width: 20vw;
-  min-width: 200px;
+  min-height: 100px;
+  max-height: 15vh;
 }
 
 main {
@@ -80,10 +82,9 @@ main h2 {
 }
 
 footer {
-  background-color: #1273ce;
+  background-color: #034c90;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
   text-align: center;
   width: 100vw;
 }
@@ -102,6 +103,7 @@ footer a {
   main {
     min-height: 100vh;
     margin-left: 20vw;
+    margin-top: 20vh;
     width: 75vw;
   }
 
@@ -112,24 +114,26 @@ footer a {
   .main-header {
     display: flex;
     flex-direction: column;
-    height: 100vh;
+    min-height: 100vh;
     max-width: 20vw;
     position: fixed;
   }
 
   .main-header .logo-link {
-    margin: 0 auto;
-    width: 100%;
+    position: fixed;
+    margin-left: 20vw;
+    width: 80vw;
   }
 
   .main-header ul {
-    margin: 0;
+    height: 100vh;
+    margin: auto;
     padding: 0;
   }
 
   .main-header ul li a {
     display: block;
-    margin: 1rem auto;
+    margin: 0 auto;
     width: 150px;
   }
 
