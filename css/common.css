@@ -101,7 +101,7 @@ footer a {
 
 @media (min-width: 1000px) {
   main {
-    min-height: 100vh;
+    min-height: 80vh;
     margin-left: 20vw;
     margin-top: 20vh;
     width: 75vw;
@@ -133,7 +133,7 @@ footer a {
 
   .main-header ul li a {
     display: block;
-    margin: 0 auto;
+    margin-top: 1rem;
     width: 150px;
   }
 
