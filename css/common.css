@@ -76,11 +76,6 @@ main {
   width: 100vw;
 }
 
-main h2 {
-  font-size: 2rem;
-  text-align: center;
-}
-
 footer {
   background-color: #034c90;
   display: flex;
@@ -107,7 +102,7 @@ footer a {
     width: 75vw;
   }
 
-  main:nth-child(2) {
+  main:first-child {
     flex-grow: 1;
   }
 
