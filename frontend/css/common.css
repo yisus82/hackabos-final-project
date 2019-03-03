@@ -102,7 +102,7 @@ footer a {
     width: 75vw;
   }
 
-  main:first-child {
+  .content {
     flex-grow: 1;
   }
 

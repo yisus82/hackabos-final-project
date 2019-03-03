@@ -1,0 +1,64 @@
+/* Generic styles */
+
+article {
+  border: 1px solid white;
+  margin: 1rem auto;
+  width: 90%;
+}
+
+article header {
+  background-color: #0933bd;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+article header h1 {
+  text-align: center;
+}
+
+article header img {
+  float: right;
+  margin-right: 1rem;
+  width: 100px;
+}
+
+article header p {
+  padding: 0 1rem;
+  text-align: center;
+}
+
+article header a {
+  padding: 0;
+  text-decoration: none;
+}
+
+article header a:hover {
+  text-decoration: underline;
+}
+
+article > p {
+  max-width: 100%;
+  padding: 1rem;
+}
+
+article > a {
+  display: block;
+  margin: 0 auto;
+  padding: 1rem;
+  width: 100px;
+}
+
+/* Big screens */
+
+@media (min-width: 1000px) {
+  .content {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  .content article {
+    margin: 1rem auto;
+    width: 45%;
+  }
+}

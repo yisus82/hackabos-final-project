@@ -11,7 +11,7 @@
     <link rel="icon" href="/img/favicon.ico" type="image/x-icon" />
     <title>MediAddicted</title>
     <link rel="stylesheet" href="/css/common.css" />
-    <link rel="stylesheet" href="/css/market.css" />
+    <link rel="stylesheet" href="/css/contact.css" />
   </head>
 
   <body>
@@ -29,15 +29,39 @@
           <li><a href="/html/users.html">Users</a></li>
           <li><a href="/html/media.html">Media info</a></li>
           <li><a href="/html/stats.html">Stats</a></li>
-          <li><a class="active" href="/html/market.html">Market</a></li>
+          <li><a href="/html/market.html">Market</a></li>
           <li><a href="/html/account.html">Account</a></li>
-          <li><a href="/html/contact.html">Contact us</a></li>
+          <li><a class="active" href="/html/contact.html">Contact us</a></li>
           <li><a href="/html/login.html">Login</a></li>
         </ul>
       </nav>
     </header>
     <main>
-      <div></div>
+      <div class="content">
+        <form action="" method="post">
+          <label for="name">Name</label>
+          <input type="text" name="name" id="name" required />
+
+          <label for="subject">Subject</label>
+          <select name="subject" id="subject" required>
+            <option value="1">Errors in content info</option>
+            <option value="2">Suggestions</option>
+            <option value="3">Report user</option>
+            <option value="4">Other</option>
+          </select>
+
+          <label for="comments">Comments</label>
+          <textarea
+            name="comments"
+            id="comments"
+            cols="30"
+            rows="10"
+            required
+          ></textarea>
+
+          <button type="submit">Send</button>
+        </form>
+      </div>
       <footer>
         <p>
           &copy; 2019 Jesús Ángel Pérez-Roca Fernández (jprf.liceo@gmail.com)

@@ -1,55 +1,63 @@
 /* Generic styles */
 
-section {
+article {
   border: 1px solid white;
   margin: 1rem auto;
   width: 90%;
 }
 
-section header {
+article header {
   background-color: #0933bd;
   display: flex;
   flex-direction: column;
   width: 100%;
 }
 
-section header h1 {
+article header h1 {
   text-align: center;
 }
 
-section header p {
+article header img {
+  float: right;
+  margin-right: 1rem;
+  width: 100px;
+}
+
+article header p {
   padding: 0 1rem;
   text-align: center;
 }
 
-section header a {
+article header a {
   padding: 0;
   text-decoration: none;
 }
 
-section header a:hover {
+article header a:hover {
   text-decoration: underline;
 }
 
-section > p {
+article > p {
   max-width: 100%;
   padding: 1rem;
 }
 
-section > a {
-  display: inline-block;
+article > a {
+  display: block;
+  margin: 0 auto;
   padding: 1rem;
+  width: 100px;
 }
 
 /* Big screens */
 
 @media (min-width: 1000px) {
-  .reviews {
+  .content {
     display: flex;
     flex-wrap: wrap;
   }
 
-  .reviews section {
+  .content article {
     margin: 1rem auto;
     width: 45%;
   }
