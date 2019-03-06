@@ -45,24 +45,24 @@ async function insertUserIntoDatabase(email, password, username) {
 /**
  * Send an email with a verification link to the user to activate the account
  * @param {String} email User email
+ * @param {String} username User screen name in the application
  * @param {String} verificationCode Code to verify user email
  * @returns {Object} Sengrid response
  */
-async function sendEmailRegistration(email, verificationCode) {
+async function sendEmailRegistration(email, username, verificationCode) {
   sendgridMail.setApiKey(process.env.SENDGRID_API_KEY);
   const msg = {
-    to: email,
     from: {
       email: process.env.SENDGRID_FROM,
       name: 'MediAddicted',
     },
-    subject: 'Welcome to MediAddicted',
-    text: `To confirm your account click in the following link: ' ${
-      process.env.HTTP_SERVER_DOMAIN
-    }/users/activate?verificationCode=${verificationCode} '`,
-    html: `To confirm your account <a href="${
-      process.env.HTTP_SERVER_DOMAIN
-    }/users/activate?verificationCode=${verificationCode}">activate it here</a>`,
+    to: email,
+    dynamic_template_data: {
+      username,
+      serverDomain: process.env.HTTP_SERVER_DOMAIN,
+      verificationCode,
+    },
+    template_id: process.env.SENDGRID_TEMPLATE_ID,
   };
 
   return sendgridMail.send(msg);
@@ -97,7 +97,11 @@ async function create(req, res, next) {
     }
 
     const verificationCode = await insertUserIntoDatabase(email, password, username);
-    await sendEmailRegistration(email, verificationCode);
+    try {
+      await sendEmailRegistration(email, username, verificationCode);
+    } catch (err) {
+      console.error('Sengrid error: ', err.response.body.errors);
+    }
 
     return res.status(204).json();
   } catch (err) {
