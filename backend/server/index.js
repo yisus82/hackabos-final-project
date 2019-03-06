@@ -46,7 +46,6 @@ app.use((err, req, res) => {
     const { status, errors } = err;
     return res.status(status).json(errors);
   }
-  console.error('Error 500', err);
   return res.status(500).json({
     message: err.message,
   });
@@ -60,8 +59,6 @@ app.use((err, req, res) => {
 async function listen(port, host) {
   if (server === null) {
     server = await app.listen(port, host);
-  } else {
-    console.error("Can't listen, server already initialized");
   }
 }
 
@@ -72,8 +69,6 @@ async function close() {
   if (server) {
     await server.close();
     server = null;
-  } else {
-    console.error("Can't close a non started server");
   }
 }
 

@@ -8,7 +8,7 @@ const userModel = require('../../../db/models/user-model');
  * @param {Object} res Response object
  */
 async function getUserProfile(req, res) {
-  const uuid = req.params.uuid || req.claims.uuid;
+  const { uuid } = req.query;
   try {
     const userProfileData = await userModel.findByUuid(uuid);
     if (userProfileData) {

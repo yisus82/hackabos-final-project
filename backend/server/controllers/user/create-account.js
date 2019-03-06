@@ -19,9 +19,8 @@ async function validateSchema(payload) {
     password: Joi.string()
       .regex(/^[a-zA-Z0-9]{3,30}$/)
       .required(),
-    userName: Joi.string()
-      .min(5)
-      .max(30)
+    username: Joi.string()
+      .regex(/^[a-z0-9]{5,20}$/)
       .required(),
   };
 
@@ -32,22 +31,22 @@ async function validateSchema(payload) {
  * Insert the user into the database generating an uuid and calculating the bcrypt password
  * @param {String} email User email. It must be unique in User Schema
  * @param {String} password User password in plain text
- * @param {String} userName User screen name in the application. It must be unique in User Schema
- * @return {String} Code to verify user email. It must be unique in User Schema
+ * @param {String} username User screen name in the application. It must be unique in User Schema
+ * @returns {String} Code to verify user email. It must be unique in User Schema
  */
-async function insertUserIntoDatabase(email, password, userName) {
+async function insertUserIntoDatabase(email, password, username) {
   const saltRounds = parseInt(process.env.AUTH_BCRYPT_SALT_ROUNDS, 10);
   const securePassword = await bcrypt.hash(password, saltRounds);
   const uuid = uuidV4();
 
-  return userModel.createAccount(uuid, email, securePassword, userName);
+  return userModel.createAccount(uuid, email, securePassword, username);
 }
 
 /**
  * Send an email with a verification link to the user to activate the account
  * @param {String} email User email
  * @param {String} verificationCode Code to verify user email
- * @return {Object} Sengrid response
+ * @returns {Object} Sengrid response
  */
 async function sendEmailRegistration(email, verificationCode) {
   sendgridMail.setApiKey(process.env.SENDGRID_API_KEY);
@@ -58,7 +57,9 @@ async function sendEmailRegistration(email, verificationCode) {
       name: 'MediAddicted',
     },
     subject: 'Welcome to MediAddicted',
-    text: 'Welcome to MediAddicted',
+    text: `To confirm your account click in the following link: ' ${
+      process.env.HTTP_SERVER_DOMAIN
+    }/users/activate?verificationCode=${verificationCode} '`,
     html: `To confirm your account <a href="${
       process.env.HTTP_SERVER_DOMAIN
     }/users/activate?verificationCode=${verificationCode}">activate it here</a>`,
@@ -82,19 +83,23 @@ async function create(req, res, next) {
     return res.status(400).send(err);
   }
 
-  const { email, password, userName } = accountData;
+  const { email, password, username } = accountData;
 
   try {
-    const verificationCode = await insertUserIntoDatabase(email, password, userName);
-    res.status(204).json();
-
-    try {
-      await sendEmailRegistration(email, verificationCode);
-    } catch (err) {
-      console.error('Sengrid error: ', err.response.body.errors);
+    const emailFound = await userModel.findByEmail(email);
+    if (emailFound) {
+      return res.status(400).send('Duplicated email');
     }
 
-    return null;
+    const userNameFound = await userModel.findByUserName(username);
+    if (userNameFound) {
+      return res.status(400).send('Duplicated username');
+    }
+
+    const verificationCode = await insertUserIntoDatabase(email, password, username);
+    await sendEmailRegistration(email, verificationCode);
+
+    return res.status(204).json();
   } catch (err) {
     return next(err);
   }

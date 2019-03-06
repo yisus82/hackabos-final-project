@@ -39,23 +39,25 @@ async function login(req, res) {
   }
 
   try {
-    const userData = await userModel.findByEmail(accountData.email);
+    const userProfileData = await userModel.findByEmail(accountData.email);
 
-    if (!userData) {
+    if (!userProfileData) {
       return res.status(404).send();
     }
 
-    if (!userData.verifiedAt) {
+    if (!userProfileData.verifiedAt) {
       return res.status(403).send();
     }
 
-    if (!(await bcrypt.compare(accountData.password, userData.password))) {
+    if (!(await bcrypt.compare(accountData.password, userProfileData.password))) {
       return res.status(401).send();
     }
 
     const payloadJWT = {
-      uuid: userData.uuid,
-      role: userData.role,
+      uuid: userProfileData.uuid,
+      username: userProfileData.username,
+      email: userProfileData.email,
+      role: userProfileData.role,
     };
     const jwtTokenExpiration = parseInt(process.env.AUTH_ACCESS_TOKEN_TTL, 10);
     const token = jwt.sign(payloadJWT, process.env.AUTH_JWT_SECRET, {
@@ -67,8 +69,9 @@ async function login(req, res) {
     };
     return res.json(response);
   } catch (err) {
-    console.error(err);
-    return res.status(500).send(err.message);
+    return res.status(500).json({
+      message: err.message,
+    });
   }
 }
 

@@ -16,7 +16,7 @@ const userSchema = new Schema(
       unique: true,
     },
     password: String,
-    userName: {
+    username: {
       type: String,
       unique: true,
     },
@@ -44,26 +44,42 @@ class User {
   }
 
   /**
+   * Generates a new verificationCode for an user if one does not exists
+   * @param {String} uuid Universally unique identifier. Primary Key in User Schema
+   * @returns {String} Code to verify user email. It must be unique in User Schema
+   */
+  async generateVerificationCode(uuid) {
+    let foundDoc = await this.model.findOne({ uuid }).lean();
+    let verificationCode;
+    if (!foundDoc) {
+      verificationCode = uuidV4();
+      foundDoc = await this.model.findOne({ verificationCode }).lean();
+      while (foundDoc) {
+        verificationCode = uuidV4();
+        // eslint-disable-next-line no-await-in-loop
+        foundDoc = await this.model.findOne({ verificationCode }).lean();
+      }
+    } else {
+      ({ verificationCode } = foundDoc);
+    }
+    return verificationCode;
+  }
+
+  /**
    * Creates an account/user
    * @param {String} uuid Universally unique identifier. Primary Key in User Schema
    * @param {String} email User email. It must be unique in User Schema
    * @param {String} password Encrypted password
-   * @param {String} userName User screen name in the application. It must be unique in User Schema
-   * @return {String} Code to verify user email. It must be unique in User Schema
+   * @param {String} username User screen name in the application. It must be unique in User Schema
+   * @returns {String} Code to verify user email. It must be unique in User Schema
    */
-  async createAccount(uuid, email, password, userName) {
-    let verificationCode = uuidV4();
-    let foundDoc = await this.model.findOne({ verificationCode }).lean();
-    while (foundDoc) {
-      verificationCode = uuidV4();
-      // eslint-disable-next-line no-await-in-loop
-      foundDoc = await this.model.findOne({ verificationCode }).lean();
-    }
+  async createAccount(uuid, email, password, username) {
+    const verificationCode = await this.generateVerificationCode(uuid);
     const userProfileData = {
       uuid,
       email,
       password,
-      userName,
+      username,
       role: 'user',
       avatarURL: null,
       verificationCode,
@@ -72,8 +88,7 @@ class User {
       trades: [],
       comments: [],
     };
-    const userCreated = await this.model.create(userProfileData);
-    console.log(userCreated);
+    await this.model.create(userProfileData);
     return verificationCode;
   }
 
@@ -105,31 +120,40 @@ class User {
   /**
    * Finds an user using an email
    * @param {String} email User's email
-   * @returns {Object} userData User's data
+   * @returns {Object} userProfileData User's data
    */
   async findByEmail(email) {
-    const userData = await this.model.findOne({ email }).lean();
-    return userData;
+    const userProfileData = await this.model.findOne({ email }).lean();
+    return userProfileData;
+  }
+
+  /**
+   * Finds an user using an username
+   * @param {String} username User's name
+   * @returns {Object} userProfileData User's data
+   */
+  async findByUserName(username) {
+    const userProfileData = await this.model.findOne({ username }).lean();
+    return userProfileData;
   }
 
   /**
    * Finds an user using an uuid
    * @param {String} uuid User's uuid
-   * @returns {Object} userData User's data
+   * @returns {Object} userProfileData User's data
    */
   async findByUuid(uuid) {
-    const userData = await this.model.findOne({ uuid }).lean();
-    return userData;
+    const userProfileData = await this.model.findOne({ uuid }).lean();
+    return userProfileData;
   }
 
   /**
-   * Updates some of the user data
+   * Changes an user's password
    * @param {String} uuid Universally unique identifier. Primary Key in User Schema
-   * @param {String} email User email. It must be unique in User Schema
-   * @param {String} userName User screen name in the application. It must be unique in User Schema
+   * @param {String} password Encrypted password
    */
-  async updateData(uuid, email, userName) {
-    await this.model.updateOne({ uuid }, { email, userName });
+  async changePassword(uuid, password) {
+    await this.model.updateOne({ uuid }, { password });
   }
 }
 

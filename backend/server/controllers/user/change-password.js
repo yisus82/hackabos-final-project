@@ -1,5 +1,6 @@
 'use strict';
 
+const bcrypt = require('bcrypt');
 const Joi = require('joi');
 
 const userModel = require('../../../db/models/user-model');
@@ -11,12 +12,8 @@ const userModel = require('../../../db/models/user-model');
  */
 async function validate(payload) {
   const schema = {
-    email: Joi.string()
-      .email({ minDomainAtoms: 2 })
-      .required(),
-    userName: Joi.string()
-      .min(5)
-      .max(30)
+    password: Joi.string()
+      .regex(/^[a-zA-Z0-9]{3,30}$/)
       .required(),
   };
 
@@ -24,24 +21,26 @@ async function validate(payload) {
 }
 
 /**
- * Updates some data from a user's profile
+ * Updates user's password
  * @param {Object} req Request object
  * @param {Object} res Response object
  */
-async function updateUserProfile(req, res) {
-  const userProfileData = { ...req.body };
+async function changePassword(req, res) {
+  const bodyData = { ...req.body };
   const { claims } = req;
   try {
-    await validate(userProfileData);
+    await validate(bodyData);
   } catch (err) {
     return res.status(400).send(err.message);
   }
+  const saltRounds = parseInt(process.env.AUTH_BCRYPT_SALT_ROUNDS, 10);
+  const securePassword = await bcrypt.hash(bodyData.password, saltRounds);
   try {
-    await userModel.updateData(claims.uuid, userProfileData.email, userProfileData.userName);
+    await userModel.changePassword(claims.uuid, securePassword);
     return res.status(204).send();
   } catch (err) {
     return res.status(500).send(err.message);
   }
 }
 
-module.exports = updateUserProfile;
+module.exports = changePassword;
