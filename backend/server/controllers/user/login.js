@@ -24,6 +24,11 @@ async function validateSchema(payload) {
   return Joi.validate(payload, schema);
 }
 
+/**
+ * Authenticates a user
+ * @param {Object} req Request object
+ * @param {Object} res Response object
+ */
 async function login(req, res) {
   const accountData = { ...req.body };
 
@@ -40,7 +45,7 @@ async function login(req, res) {
       return res.status(404).send();
     }
 
-    if (!userData.activated_at) {
+    if (!userData.verifiedAt) {
       return res.status(403).send();
     }
 

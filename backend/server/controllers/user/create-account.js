@@ -33,7 +33,7 @@ async function validateSchema(payload) {
  * @param {String} email User email. It must be unique in User Schema
  * @param {String} password User password in plain text
  * @param {String} userName User screen name in the application. It must be unique in User Schema
- * @return {String} verificationCode Code to verify user email. It must be unique in User Schema
+ * @return {String} Code to verify user email. It must be unique in User Schema
  */
 async function insertUserIntoDatabase(email, password, userName) {
   const saltRounds = parseInt(process.env.AUTH_BCRYPT_SALT_ROUNDS, 10);
@@ -58,10 +58,10 @@ async function sendEmailRegistration(email, verificationCode) {
       name: 'MediAddicted',
     },
     subject: 'Welcome to MediAddicted',
-    text: '',
+    text: 'Welcome to MediAddicted',
     html: `To confirm your account <a href="${
       process.env.HTTP_SERVER_DOMAIN
-    }/user/activate?verification_code=${verificationCode}">activate it here</a>`,
+    }/users/activate?verificationCode=${verificationCode}">activate it here</a>`,
   };
 
   return sendgridMail.send(msg);
@@ -91,7 +91,7 @@ async function create(req, res, next) {
     try {
       await sendEmailRegistration(email, verificationCode);
     } catch (err) {
-      console.error('Sengrid error', err);
+      console.error('Sengrid error: ', err.response.body.errors);
     }
 
     return null;

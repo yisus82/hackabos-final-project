@@ -2,6 +2,11 @@
 
 const userModel = require('../../../db/models/user-model');
 
+/**
+ * Activates an user account
+ * @param {Object} req Request object
+ * @param {Object} res Response object
+ */
 async function activate(req, res) {
   const { verificationCode } = req.query;
 

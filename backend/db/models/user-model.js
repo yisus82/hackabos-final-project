@@ -25,7 +25,6 @@ const userSchema = new Schema(
       default: 'user',
     },
     avatarURL: String,
-    createdAt: { type: Date, default: Date.now },
     verificationCode: {
       type: String,
       unique: true,
@@ -36,9 +35,8 @@ const userSchema = new Schema(
     comments: [],
     __v: { type: Number, select: false },
   },
-  { _id: false }
+  { timestamps: true }
 );
-userSchema.static('findByEmail', (email, callback) => this.find({ email }, callback));
 
 class User {
   constructor() {
@@ -51,7 +49,7 @@ class User {
    * @param {String} email User email. It must be unique in User Schema
    * @param {String} password Encrypted password
    * @param {String} userName User screen name in the application. It must be unique in User Schema
-   * @return {String} verificationCode Code to verify user email. It must be unique in User Schema
+   * @return {String} Code to verify user email. It must be unique in User Schema
    */
   async createAccount(uuid, email, password, userName) {
     let verificationCode = uuidV4();
@@ -61,11 +59,6 @@ class User {
       // eslint-disable-next-line no-await-in-loop
       foundDoc = await this.model.findOne({ verificationCode }).lean();
     }
-    const now = new Date();
-    const createdAt = now
-      .toISOString()
-      .substring(0, 19)
-      .replace('T', ' ');
     const userProfileData = {
       uuid,
       email,
@@ -73,7 +66,6 @@ class User {
       userName,
       role: 'user',
       avatarURL: null,
-      createdAt,
       verificationCode,
       verifiedAt: null,
       reviews: [],
@@ -93,11 +85,7 @@ class User {
   async activateAccount(verificationCode) {
     let foundUsers = 0;
     let activatedUsers = 0;
-    const now = new Date();
-    const verifiedAt = now
-      .toISOString()
-      .substring(0, 19)
-      .replace('T', ' ');
+    const verifiedAt = new Date().toISOString();
     const updatedUser = await this.model.findOneAndUpdate(
       { verificationCode, verifiedAt: null },
       { verifiedAt }
@@ -120,7 +108,17 @@ class User {
    * @returns {Object} userData User's data
    */
   async findByEmail(email) {
-    const userData = await this.model.findByEmail(email);
+    const userData = await this.model.findOne({ email }).lean();
+    return userData;
+  }
+
+  /**
+   * Finds an user using an uuid
+   * @param {String} uuid User's uuid
+   * @returns {Object} userData User's data
+   */
+  async findByUuid(uuid) {
+    const userData = await this.model.findOne({ uuid }).lean();
     return userData;
   }
 
@@ -128,11 +126,10 @@ class User {
    * Updates some of the user data
    * @param {String} uuid Universally unique identifier. Primary Key in User Schema
    * @param {String} email User email. It must be unique in User Schema
-   * @param {String} password Encrypted password
    * @param {String} userName User screen name in the application. It must be unique in User Schema
    */
-  async updateData(uuid, email, password, userName) {
-    await this.model.updateOne({ uuid }, { email, password, userName });
+  async updateData(uuid, email, userName) {
+    await this.model.updateOne({ uuid }, { email, userName });
   }
 }
 

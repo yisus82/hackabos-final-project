@@ -2,6 +2,12 @@
 
 const jwt = require('jsonwebtoken');
 
+/**
+ * Checks if a JWT Token is valid and if so it puts JWT contents in the request
+ * @param {Object} req Request object
+ * @param {Object} res Response object
+ * @param {Object} next Next function
+ */
 async function checkJWTToken(req, res, next) {
   const { authorization } = req.headers;
   if (!authorization) {
