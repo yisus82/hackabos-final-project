@@ -19,7 +19,7 @@ async function validateSchema(payload) {
       .required(),
     password: Joi.string()
       .regex(/^[a-zA-Z0-9]{3,30}$/)
-      .required()
+      .required(),
   };
 
   return Joi.validate(payload, schema);
@@ -54,11 +54,11 @@ async function login(accountData) {
   const payloadJWT = {
     username: userProfileData.username,
     email: userProfileData.email,
-    role: userProfileData.role
+    role: userProfileData.role,
   };
   const jwtTokenExpiration = parseInt(process.env.AUTH_ACCESS_TOKEN_TTL, 10);
   const token = jwt.sign(payloadJWT, process.env.AUTH_JWT_SECRET, {
-    expiresIn: jwtTokenExpiration
+    expiresIn: jwtTokenExpiration,
   });
   return token;
 }
