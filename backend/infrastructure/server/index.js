@@ -13,7 +13,7 @@ app.use(bodyParser.json());
  * Add response headers
  */
 app.use((req, res, next) => {
-  const accessControlAllowMethods = ['GET', 'POST', 'OPTIONS', 'PUT', 'DELETE'];
+  const accessControlAllowMethods = ['GET', 'POST', 'OPTIONS', 'PUT', 'PATCH', 'DELETE'];
 
   const accessControlAllowHeaders = [
     'Authorization',
@@ -43,8 +43,8 @@ app.use('*', (req, res) => res.status(404).send());
  */
 app.use((err, req, res) => {
   if (err.name === 'MediAddicted') {
-    const { status, errors } = err;
-    return res.status(status).json(errors);
+    const { status, message } = err;
+    return res.status(status).json({ message });
   }
   return res.status(500).json({
     message: err.message,

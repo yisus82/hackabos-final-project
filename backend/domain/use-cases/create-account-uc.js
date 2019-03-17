@@ -3,8 +3,8 @@
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
 const sendgridMail = require('@sendgrid/mail');
-const uuidV4 = require('uuid/v4');
-const userModel = require('../../../db/models/user-model');
+const createMediAddictedError = require('../errors/mediaddicted-error');
+const userRepository = require('../repositories/user-repository');
 
 /**
  * Validates data
@@ -37,9 +37,8 @@ async function validateSchema(payload) {
 async function insertUserIntoDatabase(email, password, username) {
   const saltRounds = parseInt(process.env.AUTH_BCRYPT_SALT_ROUNDS, 10);
   const securePassword = await bcrypt.hash(password, saltRounds);
-  const uuid = uuidV4();
 
-  return userModel.createAccount(uuid, email, securePassword, username);
+  return userRepository.createAccount(email, securePassword, username);
 }
 
 /**
@@ -70,43 +69,26 @@ async function sendEmailRegistration(email, username, verificationCode) {
 
 /**
  * Creates an user account
- * @param {Object} req Request object
- * @param {Object} res Response object
- * @param {Object} next Next function
+ * @param {Object} accountData User's account data
+ * @returns {Object} null if OK
  */
-async function create(req, res, next) {
-  const accountData = { ...req.body };
-
+async function createAccount(accountData) {
   try {
     await validateSchema(accountData);
   } catch (err) {
-    return res.status(400).send(err);
+    throw createMediAddictedError(400, err);
   }
 
   const { email, password, username } = accountData;
 
+  const verificationCode = await insertUserIntoDatabase(email, password, username);
   try {
-    const emailFound = await userModel.findByEmail(email);
-    if (emailFound) {
-      return res.status(400).send('Duplicated email');
-    }
-
-    const userNameFound = await userModel.findByUserName(username);
-    if (userNameFound) {
-      return res.status(400).send('Duplicated username');
-    }
-
-    const verificationCode = await insertUserIntoDatabase(email, password, username);
-    try {
-      await sendEmailRegistration(email, username, verificationCode);
-    } catch (err) {
-      console.error('Sengrid error: ', err.response.body.errors);
-    }
-
-    return res.status(204).json();
+    await sendEmailRegistration(email, username, verificationCode);
   } catch (err) {
-    return next(err);
+    console.error('Sengrid error: ', err.response.body.errors);
   }
+
+  return null;
 }
 
-module.exports = create;
+module.exports = createAccount;

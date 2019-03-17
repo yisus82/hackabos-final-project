@@ -1,9 +1,9 @@
 'use strict';
 
 require('dotenv-safe').config();
-const httpServer = require('./server');
+const httpServer = require('./infrastructure/server');
 const httpServerConfig = require('./config/http-server-config');
-const dbConnectionPool = require('./db/pools/mongo-pool');
+const dbConnectionPool = require('./infrastructure/db/pools/mongo-pool');
 
 /**
  * Initialize dependencies

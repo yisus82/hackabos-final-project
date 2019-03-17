@@ -7,10 +7,6 @@ const { Schema } = mongoose;
 
 const userSchema = new Schema(
   {
-    uuid: {
-      type: String,
-      unique: true,
-    },
     email: {
       type: String,
       unique: true,
@@ -30,9 +26,6 @@ const userSchema = new Schema(
       unique: true,
     },
     verifiedAt: Date,
-    reviews: [],
-    trades: [],
-    comments: [],
     __v: { type: Number, select: false },
   },
   { timestamps: true }
@@ -44,12 +37,12 @@ class User {
   }
 
   /**
-   * Generates a new verificationCode for an user if one does not exists
-   * @param {String} uuid Universally unique identifier. Primary Key in User Schema
+   * Generates a new verification code for an user if one does not exists
+   * @param {String} username User screen name in the application. Primary Key in User Schema
    * @returns {String} Code to verify user email. It must be unique in User Schema
    */
-  async generateVerificationCode(uuid) {
-    let foundDoc = await this.model.findOne({ uuid }).lean();
+  async generateVerificationCode(username) {
+    let foundDoc = await this.model.findOne({ username }).lean();
     let verificationCode;
     if (!foundDoc) {
       verificationCode = uuidV4();
@@ -67,16 +60,14 @@ class User {
 
   /**
    * Creates an account/user
-   * @param {String} uuid Universally unique identifier. Primary Key in User Schema
    * @param {String} email User email. It must be unique in User Schema
    * @param {String} password Encrypted password
-   * @param {String} username User screen name in the application. It must be unique in User Schema
+   * @param {String} username User screen name in the application. Primary Key in User Schema
    * @returns {String} Code to verify user email. It must be unique in User Schema
    */
-  async createAccount(uuid, email, password, username) {
-    const verificationCode = await this.generateVerificationCode(uuid);
+  async createAccount(email, password, username) {
+    const verificationCode = await this.generateVerificationCode(username);
     const userProfileData = {
-      uuid,
       email,
       password,
       username,
@@ -84,9 +75,6 @@ class User {
       avatarURL: null,
       verificationCode,
       verifiedAt: null,
-      reviews: [],
-      trades: [],
-      comments: [],
     };
     await this.model.create(userProfileData);
     return verificationCode;
@@ -95,7 +83,7 @@ class User {
   /**
    * Activates an user account
    * @param {String} verificationCode Code to verify user email
-   * @returns {Object} foundUsers, activatedUsers Number of users found and activated
+   * @returns {Object} Number of users found and activated
    */
   async activateAccount(verificationCode) {
     let foundUsers = 0;
@@ -120,7 +108,7 @@ class User {
   /**
    * Finds an user using an email
    * @param {String} email User's email
-   * @returns {Object} userProfileData User's data
+   * @returns {Object} User's data
    */
   async findByEmail(email) {
     const userProfileData = await this.model.findOne({ email }).lean();
@@ -129,8 +117,8 @@ class User {
 
   /**
    * Finds an user using an username
-   * @param {String} username User's name
-   * @returns {Object} userProfileData User's data
+   * @param {String} username User's screen name
+   * @returns {Object} User's data
    */
   async findByUserName(username) {
     const userProfileData = await this.model.findOne({ username }).lean();
@@ -138,22 +126,12 @@ class User {
   }
 
   /**
-   * Finds an user using an uuid
-   * @param {String} uuid User's uuid
-   * @returns {Object} userProfileData User's data
-   */
-  async findByUuid(uuid) {
-    const userProfileData = await this.model.findOne({ uuid }).lean();
-    return userProfileData;
-  }
-
-  /**
    * Changes an user's password
-   * @param {String} uuid Universally unique identifier. Primary Key in User Schema
+   * @param {String} username User screen name in the application. Primary Key in User Schema
    * @param {String} password Encrypted password
    */
-  async changePassword(uuid, password) {
-    await this.model.updateOne({ uuid }, { password });
+  async changePassword(username, password) {
+    await this.model.updateOne({ username }, { password });
   }
 }
 
