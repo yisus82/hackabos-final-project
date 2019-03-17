@@ -1,9 +1,9 @@
 'use strict';
 
 const Joi = require('joi');
-const checkAuth = require('../auth/check-auth');
-const createMediAddictedError = require('../errors/mediaddicted-error');
-const userRepository = require('../repositories/user-repository');
+const checkAuth = require('../../auth/check-auth');
+const createMediAddictedError = require('../../errors/mediaddicted-error');
+const userRepository = require('../../repositories/user-repository');
 
 /**
  * Validates data

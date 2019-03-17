@@ -1,6 +1,6 @@
 'use strict';
 
-const activateAccount = require('../../../../../domain/use-cases/activate-account-uc');
+const activateAccount = require('../../../../../domain/use-cases/user/activate-account-uc');
 
 /**
  * Activates an user account

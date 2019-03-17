@@ -1,6 +1,6 @@
 'use strict';
 
-const changePassword = require('../../../../../domain/use-cases/change-password-uc');
+const changePassword = require('../../../../../domain/use-cases/user/change-password-uc');
 
 /**
  * Updates user's password

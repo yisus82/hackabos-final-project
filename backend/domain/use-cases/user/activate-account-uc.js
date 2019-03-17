@@ -1,7 +1,7 @@
 'use strict';
 
-const createMediAddictedError = require('../errors/mediaddicted-error');
-const userRepository = require('../repositories/user-repository');
+const createMediAddictedError = require('../../errors/mediaddicted-error');
+const userRepository = require('../../repositories/user-repository');
 
 /**
  * Activates an user account

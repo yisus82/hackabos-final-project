@@ -1,6 +1,6 @@
 'use strict';
 
-const login = require('../../../../../domain/use-cases/login-uc');
+const login = require('../../../../../domain/use-cases/user/login-uc');
 
 /**
  * Authenticates a user

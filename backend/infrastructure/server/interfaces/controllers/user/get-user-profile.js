@@ -1,6 +1,6 @@
 'use strict';
 
-const getUserProfile = require('../../../../../domain/use-cases/get-user-profile-uc');
+const getUserProfile = require('../../../../../domain/use-cases/user/get-user-profile-uc');
 
 /**
  * Gets a user profile data

@@ -3,8 +3,8 @@
 const bcrypt = require('bcrypt');
 const Joi = require('joi');
 const sendgridMail = require('@sendgrid/mail');
-const createMediAddictedError = require('../errors/mediaddicted-error');
-const userRepository = require('../repositories/user-repository');
+const createMediAddictedError = require('../../errors/mediaddicted-error');
+const userRepository = require('../../repositories/user-repository');
 
 /**
  * Validates data
