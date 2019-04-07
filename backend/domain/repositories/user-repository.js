@@ -24,8 +24,8 @@ class UserRepository {
    * @param {number} limit Page limit
    * @returns {Object} Users in the page given within the limit given sorted by username ascending
    */
-  async getUsersByPage(page, limit) {
-    return this.model.getUsersByPage(page, limit);
+  async getByPage(page, limit) {
+    return this.model.getByPage(page, limit);
   }
 
   /**
@@ -73,7 +73,7 @@ class UserRepository {
    * @param {String} password Encrypted password
    */
   async changePassword(username, password) {
-    return this.model.changePassword(username, password);
+    this.model.changePassword(username, password);
   }
 
   /**
@@ -82,7 +82,7 @@ class UserRepository {
    * @param {String} avatarURL User's avatar URL
    */
   async changeAvatar(username, avatarURL) {
-    return this.model.changeAvatar(username, avatarURL);
+    this.model.changeAvatar(username, avatarURL);
   }
 }
 

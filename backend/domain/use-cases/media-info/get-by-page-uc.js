@@ -1,9 +1,8 @@
 'use strict';
 
 const Joi = require('joi');
-const checkAuth = require('../../auth/check-auth');
 const createMediAddictedError = require('../../errors/mediaddicted-error');
-const userRepository = require('../../repositories/user-repository');
+const mediaInfoRepository = require('../../repositories/media-info-repository');
 
 /**
  * Validates data
@@ -24,18 +23,11 @@ async function validate(payload) {
 }
 
 /**
- * Gets an user profile
+ * Gets users using pagination
  * @param {Object} queryData Object with optional page and limit properties
- * @param {String} auth Auth token
  * @returns {Object} User's profile data
  */
-async function getUsersByPage(queryData, auth) {
-  const { role } = await checkAuth(auth);
-
-  if (role === 'guest') {
-    throw createMediAddictedError(403, 'Not authorized');
-  }
-
+async function getByPage(queryData) {
   try {
     await validate(queryData);
   } catch (err) {
@@ -49,7 +41,7 @@ async function getUsersByPage(queryData, auth) {
   if (limit) {
     limit = +limit;
   }
-  return userRepository.getUsersByPage(page, limit);
+  return mediaInfoRepository.getByPage(page, limit);
 }
 
-module.exports = getUsersByPage;
+module.exports = getByPage;

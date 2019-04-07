@@ -94,15 +94,14 @@ class User {
     let foundUsers = 0;
     let activatedUsers = 0;
     const verifiedAt = new Date().toISOString();
-    const updatedUser = await this.model.findOneAndUpdate(
-      { verificationCode, verifiedAt: null },
-      { verifiedAt }
-    );
+    const updatedUser = await this.model
+      .findOneAndUpdate({ verificationCode, verifiedAt: null }, { verifiedAt })
+      .lean();
     if (updatedUser) {
       activatedUsers += 1;
       foundUsers += 1;
     } else {
-      const foundUser = await this.model.findOne({ verificationCode });
+      const foundUser = await this.model.findOne({ verificationCode }).lean();
       if (foundUser) {
         foundUsers += 1;
       }
@@ -116,8 +115,7 @@ class User {
    * @returns {Object} User's data
    */
   async findByEmail(email) {
-    const userProfileData = await this.model.findOne({ email }).lean();
-    return userProfileData;
+    return this.model.findOne({ email }).lean();
   }
 
   /**
@@ -126,8 +124,7 @@ class User {
    * @returns {Object} User's data
    */
   async findByUserName(username) {
-    const userProfileData = await this.model.findOne({ username }).lean();
-    return userProfileData;
+    return this.model.findOne({ username }).lean();
   }
 
   /**
@@ -136,11 +133,12 @@ class User {
    * @param {number} limit Page limit
    * @returns {Object} Users in the page given within the limit given sorted by username ascending
    */
-  async getUsersByPage(page = 1, limit = 10) {
+  async getByPage(page = 1, limit = 10) {
     const options = {
       page,
       limit,
       lean: true,
+      leanWithId: false,
       sort: { username: 1 },
     };
     return this.model.paginate({}, options);

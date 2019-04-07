@@ -1,6 +1,6 @@
 'use strict';
 
-const activateAccount = require('../../../../../domain/use-cases/user/activate-uc');
+const activate = require('../../../../../domain/use-cases/user/activate-uc');
 
 /**
  * Activates an user account
@@ -8,15 +8,15 @@ const activateAccount = require('../../../../../domain/use-cases/user/activate-u
  * @param {Object} res Response object
  * @param {Object} next Next function
  */
-async function activateAccountController(req, res, next) {
+async function activateController(req, res, next) {
   const { verificationCode } = req.query;
 
   try {
-    const message = await activateAccount(verificationCode);
+    const message = await activate(verificationCode);
     return res.send(message);
   } catch (err) {
     return next(err);
   }
 }
 
-module.exports = activateAccountController;
+module.exports = activateController;

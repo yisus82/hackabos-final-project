@@ -1,19 +1,19 @@
 'use strict';
 
-const getUsersByPage = require('../../../../../domain/use-cases/user/get-users-by-page-uc');
+const getByPage = require('../../../../../domain/use-cases/user/get-by-page-uc');
 
 /**
- * Gets a user profile data
+ * Get users using pagination
  * @param {Object} req Request object
  * @param {Object} res Response object
  * @param {Object} next Next function
  */
-async function getUsersByPageController(req, res, next) {
+async function getByPageController(req, res, next) {
   const queryData = { ...req.query };
   const { authorization } = req.headers;
 
   try {
-    const usersData = await getUsersByPage(queryData, authorization);
+    const usersData = await getByPage(queryData, authorization);
     if (!usersData) {
       return res.status(404).send();
     }
@@ -23,4 +23,4 @@ async function getUsersByPageController(req, res, next) {
   }
 }
 
-module.exports = getUsersByPageController;
+module.exports = getByPageController;

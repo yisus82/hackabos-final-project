@@ -1,6 +1,6 @@
 'use strict';
 
-const createAccount = require('../../../../../domain/use-cases/user/register-uc');
+const register = require('../../../../../domain/use-cases/user/register-uc');
 
 /**
  * Creates an user account
@@ -8,15 +8,15 @@ const createAccount = require('../../../../../domain/use-cases/user/register-uc'
  * @param {Object} res Response object
  * @param {Object} next Next function
  */
-async function createAccountController(req, res, next) {
+async function registerController(req, res, next) {
   const accountData = { ...req.body };
 
   try {
-    await createAccount(accountData);
+    await register(accountData);
     return res.status(204).json();
   } catch (err) {
     return next(err);
   }
 }
 
-module.exports = createAccountController;
+module.exports = registerController;
