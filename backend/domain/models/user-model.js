@@ -128,7 +128,7 @@ class User {
   }
 
   /**
-   * Returns users using pagination
+   * Gets all the users using pagination
    * @param {number} page Page number
    * @param {number} limit Page limit
    * @returns {Object} Users in the page given within the limit given sorted by username ascending

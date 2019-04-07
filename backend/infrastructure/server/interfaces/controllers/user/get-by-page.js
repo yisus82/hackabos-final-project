@@ -3,7 +3,7 @@
 const getByPage = require('../../../../../domain/use-cases/user/get-by-page-uc');
 
 /**
- * Get users using pagination
+ * Get all the users using pagination
  * @param {Object} req Request object
  * @param {Object} res Response object
  * @param {Object} next Next function

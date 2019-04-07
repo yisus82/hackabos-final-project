@@ -1,9 +1,9 @@
 'use strict';
 
 const Joi = require('joi');
-const checkAuth = require('../../auth/check-auth');
+Joi.objectId = require('joi-objectid')(Joi);
 const createMediAddictedError = require('../../errors/mediaddicted-error');
-const userRepository = require('../../repositories/user-repository');
+const reviewRepository = require('../../repositories/review-repository');
 
 /**
  * Validates data
@@ -12,6 +12,7 @@ const userRepository = require('../../repositories/user-repository');
  */
 async function validate(payload) {
   const schema = {
+    mediaInfo: Joi.objectId().required(),
     page: Joi.number()
       .positive()
       .optional(),
@@ -24,18 +25,12 @@ async function validate(payload) {
 }
 
 /**
- * Gets all the users using pagination
- * @param {Object} queryData Object with optional page and limit properties
- * @param {String} auth Auth token
- * @returns {Object} User's profile data
+ * Gets all the reviews from a media info using pagination
+ * @param {Object} queryData Object with required media info id and
+ * optional page and limit properties
+ * @returns {Object} Review's data
  */
-async function getByPage(queryData, auth) {
-  const { role } = await checkAuth(auth);
-
-  if (role === 'guest') {
-    throw createMediAddictedError(403, 'Not authorized');
-  }
-
+async function getByMediaInfo(queryData) {
   try {
     await validate(queryData);
   } catch (err) {
@@ -49,7 +44,7 @@ async function getByPage(queryData, auth) {
   if (limit) {
     limit = +limit;
   }
-  return userRepository.getByPage(page, limit);
+  return reviewRepository.getByMediaInfo(queryData.mediaInfo, page, limit);
 }
 
-module.exports = getByPage;
+module.exports = getByMediaInfo;

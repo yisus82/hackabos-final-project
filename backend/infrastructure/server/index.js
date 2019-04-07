@@ -36,7 +36,8 @@ app.use((req, res, next) => {
  * Add all routes
  */
 app.use('/users', routes.userRouter);
-app.use('/info', routes.mediaInfoRouter);
+app.use('/infos', routes.mediaInfoRouter);
+app.use('/reviews', routes.reviewRouter);
 app.use('*', (req, res) => res.status(404).send());
 
 /**

@@ -23,9 +23,9 @@ async function validate(payload) {
 }
 
 /**
- * Gets users using pagination
+ * Gets all the media infos using pagination
  * @param {Object} queryData Object with optional page and limit properties
- * @returns {Object} User's profile data
+ * @returns {Object} Media info's data
  */
 async function getByPage(queryData) {
   try {

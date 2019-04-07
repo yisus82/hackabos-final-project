@@ -28,7 +28,7 @@ class MediaInfoRepository {
   }
 
   /**
-   * Returns media infos using pagination
+   * Returns all the media infos using pagination
    * @param {number} page Page number
    * @param {number} limit Page limit
    * @returns {Object} Media infos in the page given within the limit given sorted
