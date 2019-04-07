@@ -19,6 +19,16 @@ class UserRepository {
   }
 
   /**
+   * Returns users using pagination
+   * @param {number} page Page number
+   * @param {number} limit Page limit
+   * @returns {Object} Users in the page given within the limit given sorted by username ascending
+   */
+  async getUsersByPage(page, limit) {
+    return this.model.getUsersByPage(page, limit);
+  }
+
+  /**
    * Finds an user using an email
    * @param {String} email User's email
    * @returns {Object} User profile data

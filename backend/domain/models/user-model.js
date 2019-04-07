@@ -131,6 +131,22 @@ class User {
   }
 
   /**
+   * Returns users using pagination
+   * @param {number} page Page number
+   * @param {number} limit Page limit
+   * @returns {Object} Users in the page given within the limit given sorted by username ascending
+   */
+  async getUsersByPage(page = 1, limit = 10) {
+    const options = {
+      page,
+      limit,
+      lean: true,
+      sort: { username: 1 },
+    };
+    return this.model.paginate({}, options);
+  }
+
+  /**
    * Changes an user's password
    * @param {String} username User screen name in the application. Primary Key in User Schema
    * @param {String} password Encrypted password
