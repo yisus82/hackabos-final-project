@@ -22,7 +22,7 @@ mediaInfoSchema.plugin(beautifyUnique);
 
 class MediaInfo {
   constructor() {
-    this.model = mongoose.model('MediaInfo', mediaInfoSchema);
+    this.model = mongoose.model('MediaInfo', mediaInfoSchema, 'mediaInfos');
   }
 
   /**
