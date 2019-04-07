@@ -4,16 +4,16 @@ const createMediAddictedError = require('../../errors/mediaddicted-error');
 const userRepository = require('../../repositories/user-repository');
 
 /**
- * Activates an user account
+ * Activates an user
  * @param {String} verificationCode Code to verify user email
  * @returns {String} Message if no errors
  */
-async function activateAccount(verificationCode) {
+async function activate(verificationCode) {
   if (!verificationCode) {
     throw createMediAddictedError(400, 'Invalid verification code');
   }
 
-  const { foundUsers, activatedUsers } = await userRepository.activateAccount(verificationCode);
+  const { foundUsers, activatedUsers } = await userRepository.activate(verificationCode);
 
   if (activatedUsers === 1) {
     return 'Account successfully activated';
@@ -26,4 +26,4 @@ async function activateAccount(verificationCode) {
   throw createMediAddictedError(404, 'Verification code invalid');
 }
 
-module.exports = activateAccount;
+module.exports = activate;

@@ -38,7 +38,7 @@ async function insertUserIntoDatabase(email, password, username) {
   const saltRounds = parseInt(process.env.AUTH_BCRYPT_SALT_ROUNDS, 10);
   const securePassword = await bcrypt.hash(password, saltRounds);
 
-  return userRepository.createAccount(email, securePassword, username);
+  return userRepository.register(email, securePassword, username);
 }
 
 /**
@@ -68,18 +68,18 @@ async function sendEmailRegistration(email, username, verificationCode) {
 }
 
 /**
- * Creates an user account
- * @param {Object} accountData User's account data
+ * Registers an user
+ * @param {Object} userData User's data
  * @returns {Object} null if OK
  */
-async function createAccount(accountData) {
+async function register(userData) {
   try {
-    await validateSchema(accountData);
+    await validateSchema(userData);
   } catch (err) {
     throw createMediAddictedError(400, err);
   }
 
-  const { email, password, username } = accountData;
+  const { email, password, username } = userData;
 
   const verificationCode = await insertUserIntoDatabase(email, password, username);
   try {
@@ -91,4 +91,4 @@ async function createAccount(accountData) {
   return null;
 }
 
-module.exports = createAccount;
+module.exports = register;

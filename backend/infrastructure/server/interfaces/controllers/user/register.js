@@ -1,6 +1,6 @@
 'use strict';
 
-const createAccount = require('../../../../../domain/use-cases/user/create-account-uc');
+const createAccount = require('../../../../../domain/use-cases/user/register-uc');
 
 /**
  * Creates an user account

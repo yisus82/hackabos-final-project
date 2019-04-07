@@ -28,15 +28,15 @@ class UserRepository {
   }
 
   /**
-   * Creates an account/user
+   * Registers an user
    * @param {String} email User email. It must be unique in User Schema
    * @param {String} password Encrypted password
    * @param {String} username User screen name in the application. Primary Key in User Schema
    * @returns {String} Code to verify user email. It must be unique in User Schema
    */
-  async createAccount(email, password, username) {
+  async register(email, password, username) {
     try {
-      return await this.model.createAccount(email, password, username);
+      return await this.model.register(email, password, username);
     } catch (err) {
       if (err.errors.email) {
         throw createMediAddictedError(400, 'Duplicated email');
@@ -49,12 +49,12 @@ class UserRepository {
   }
 
   /**
-   * Activates an user account
+   * Activates an user
    * @param {String} verificationCode Code to verify user email
    * @returns {Object} Number of users found and activated
    */
-  async activateAccount(verificationCode) {
-    return this.model.activateAccount(verificationCode);
+  async activate(verificationCode) {
+    return this.model.activate(verificationCode);
   }
 
   /**
