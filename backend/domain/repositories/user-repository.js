@@ -35,16 +35,17 @@ class UserRepository {
    * @returns {String} Code to verify user email. It must be unique in User Schema
    */
   async createAccount(email, password, username) {
-    const emailFound = await this.model.findByEmail(email);
-    if (emailFound) {
-      throw createMediAddictedError(400, 'Duplicated email');
+    try {
+      return await this.model.createAccount(email, password, username);
+    } catch (err) {
+      if (err.errors.email) {
+        throw createMediAddictedError(400, 'Duplicated email');
+      } else if (err.errors.username) {
+        throw createMediAddictedError(400, 'Duplicated username');
+      } else {
+        throw err;
+      }
     }
-
-    const userNameFound = await this.model.findByUserName(username);
-    if (userNameFound) {
-      throw createMediAddictedError(400, 'Duplicated username');
-    }
-    return this.model.createAccount(email, password, username);
   }
 
   /**
@@ -63,6 +64,15 @@ class UserRepository {
    */
   async changePassword(username, password) {
     return this.model.changePassword(username, password);
+  }
+
+  /**
+   * Changes an user's avatar
+   * @param {String} username User screen name in the application. Primary Key in User Schema
+   * @param {String} avatarURL User's avatar URL
+   */
+  async changeAvatar(username, avatarURL) {
+    return this.model.changeAvatar(username, avatarURL);
   }
 }
 

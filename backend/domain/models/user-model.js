@@ -2,6 +2,8 @@
 
 const uuidV4 = require('uuid/v4');
 const mongoose = require('mongoose');
+const mongoosePaginate = require('mongoose-paginate-v2');
+const beautifyUnique = require('mongoose-beautiful-unique-validation');
 
 const { Schema } = mongoose;
 
@@ -30,6 +32,9 @@ const userSchema = new Schema(
   },
   { timestamps: true }
 );
+
+userSchema.plugin(mongoosePaginate);
+userSchema.plugin(beautifyUnique);
 
 class User {
   constructor() {
@@ -132,6 +137,15 @@ class User {
    */
   async changePassword(username, password) {
     await this.model.updateOne({ username }, { password });
+  }
+
+  /**
+   * Changes an user's avatar
+   * @param {String} username User screen name in the application. Primary Key in User Schema
+   * @param {String} avatarURL User's avatar URL
+   */
+  async changeAvatar(username, avatarURL) {
+    await this.model.updateOne({ username }, { avatarURL });
   }
 }
 

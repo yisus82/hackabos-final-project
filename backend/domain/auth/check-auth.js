@@ -16,7 +16,7 @@ async function checkAuth(auth) {
   }
 
   const [prefix, token] = auth.split(' ');
-  if (prefix !== 'JWT') {
+  if (prefix !== 'Bearer') {
     throw createMediAddictedError(401, 'Token format invalid');
   }
 

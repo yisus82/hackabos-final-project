@@ -12,6 +12,9 @@
     "url": "https://github.com/yisus82/hackabos-final-project/issues"
   },
   "homepage": "https://github.com/yisus82/hackabos-final-project#readme",
+  "scripts": {
+    "start": "nodemon app.js"
+  },
   "dependencies": {
     "@sendgrid/mail": "6.3.1",
     "bcrypt": "3.0.2",
@@ -24,6 +27,8 @@
     "jsonwebtoken": "8.4.0",
     "lodash": "4.17.11",
     "mongoose": "5.4.4",
+    "mongoose-beautiful-unique-validation": "^7.1.1",
+    "mongoose-paginate-v2": "^1.0.24",
     "multer": "1.4.1",
     "redis": "2.8.0",
     "uuid": "3.3.2"
@@ -34,6 +39,6 @@
     "eslint-config-airbnb-base": "13.1.0",
     "eslint-plugin-import": "2.14.0",
     "eslint-plugin-security": "1.4.0",
-    "nodemon": "1.18.10"
+    "nodemon": "^1.18.10"
   }
 }

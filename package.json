@@ -11,5 +11,8 @@
   "bugs": {
     "url": "https://github.com/yisus82/hackabos-final-project/issues"
   },
-  "homepage": "https://github.com/yisus82/hackabos-final-project#readme"
+  "homepage": "https://github.com/yisus82/hackabos-final-project#readme",
+  "dependencies": {
+    "cloudinary": "^1.14.0"
+  }
 }

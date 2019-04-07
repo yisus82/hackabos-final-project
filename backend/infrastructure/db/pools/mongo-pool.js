@@ -12,6 +12,7 @@ const mongoURI = process.env.MONGO_URI;
 async function connect() {
   await mongoose.connect(mongoURI, {
     useNewUrlParser: true,
+    useCreateIndex: true,
   });
 }
 
