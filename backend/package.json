@@ -12,7 +12,8 @@
     "url": "https://github.com/yisus82/hackabos-final-project/issues"
   },
   "engines": {
-    "node": "11.11.0"
+    "node": "11.11.0",
+    "npm": "6.9.0"
   },
   "homepage": "https://github.com/yisus82/hackabos-final-project#readme",
   "scripts": {
