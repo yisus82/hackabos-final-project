@@ -16,7 +16,7 @@
   },
   "homepage": "https://github.com/yisus82/hackabos-final-project#readme",
   "scripts": {
-    "start": "nodemon app.js"
+    "start": "node app.js"
   },
   "dependencies": {
     "@sendgrid/mail": "6.3.1",
