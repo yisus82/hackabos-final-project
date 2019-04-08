@@ -55,13 +55,12 @@ app.use((err, req, res) => {
 });
 
 /**
- * Start listening requests at a given port on a host
+ * Start listening requests at a given port
  * @param {Number} port
- * @param {String} host
  */
-async function listen(port, host) {
+async function listen(port) {
   if (server === null) {
-    server = await app.listen(port, host);
+    server = await app.listen(port);
   }
 }
 

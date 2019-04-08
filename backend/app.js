@@ -11,8 +11,8 @@ const dbConnectionPool = require('./infrastructure/db/pools/mongo-pool');
 (async function initApp() {
   try {
     await dbConnectionPool.connect();
-    await httpServer.listen(httpServerConfig.port, httpServerConfig.host);
-    console.log(`Listening: ${httpServerConfig.host}:${httpServerConfig.port}`);
+    await httpServer.listen(httpServerConfig.port);
+    console.log(`Listening on port: ${httpServerConfig.port}`);
   } catch (err) {
     await httpServer.close();
     console.error(err);
