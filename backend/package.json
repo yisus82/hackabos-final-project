@@ -11,6 +11,9 @@
   "bugs": {
     "url": "https://github.com/yisus82/hackabos-final-project/issues"
   },
+  "engines": {
+    "node": "11.11.0"
+  },
   "homepage": "https://github.com/yisus82/hackabos-final-project#readme",
   "scripts": {
     "start": "nodemon app.js"
