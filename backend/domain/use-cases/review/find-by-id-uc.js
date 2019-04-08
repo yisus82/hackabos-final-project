@@ -21,7 +21,7 @@ async function validate(payload) {
 /**
  * Finds a review using an id
  * @param {Object} queryData Object with an id property
- * @returns {Object} User's profile data
+ * @returns {Object} Review data
  */
 async function findByID(queryData) {
   try {

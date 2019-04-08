@@ -3,7 +3,7 @@
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
 const createMediAddictedError = require('../../errors/mediaddicted-error');
-const mediaInfoRepository = require('../../repositories/media-info-repository');
+const tradeRepository = require('../../repositories/trade-repository');
 
 /**
  * Validates data
@@ -19,9 +19,9 @@ async function validate(payload) {
 }
 
 /**
- * Finds a media info using an id
+ * Finds a trade using an id
  * @param {Object} queryData Object with an id property
- * @returns {Object} Media info data
+ * @returns {Object} Trade data
  */
 async function findByID(queryData) {
   try {
@@ -30,7 +30,7 @@ async function findByID(queryData) {
     throw createMediAddictedError(400, err);
   }
 
-  return mediaInfoRepository.findByID(queryData.id);
+  return tradeRepository.findByID(queryData.id);
 }
 
 module.exports = findByID;

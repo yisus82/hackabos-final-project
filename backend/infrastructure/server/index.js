@@ -38,6 +38,7 @@ app.use((req, res, next) => {
 app.use('/users', routes.userRouter);
 app.use('/infos', routes.mediaInfoRouter);
 app.use('/reviews', routes.reviewRouter);
+app.use('/trades', routes.tradeRouter);
 app.use('*', (req, res) => res.status(404).send());
 
 /**

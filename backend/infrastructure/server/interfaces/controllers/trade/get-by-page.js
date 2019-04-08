@@ -1,0 +1,25 @@
+'use strict';
+
+const getByPage = require('../../../../../domain/use-cases/trade/get-by-page-uc');
+
+/**
+ * Get all the trades using pagination
+ * @param {Object} req Request object
+ * @param {Object} res Response object
+ * @param {Object} next Next function
+ */
+async function getByPageController(req, res, next) {
+  const queryData = { ...req.query };
+
+  try {
+    const tradeData = await getByPage(queryData);
+    if (!tradeData) {
+      return res.status(404).send();
+    }
+    return res.status(200).json(tradeData);
+  } catch (err) {
+    return next(err);
+  }
+}
+
+module.exports = getByPageController;

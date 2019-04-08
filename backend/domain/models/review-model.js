@@ -74,7 +74,7 @@ class Review {
       limit,
       lean: true,
       leanWithId: false,
-      sort: { title: 1 },
+      sort: { createdAt: -1 },
     };
     return this.model.paginate({}, options);
   }

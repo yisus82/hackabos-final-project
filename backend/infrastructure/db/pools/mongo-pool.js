@@ -13,6 +13,7 @@ async function connect() {
   await mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useCreateIndex: true,
+    useFindAndModify: false,
   });
 }
 
