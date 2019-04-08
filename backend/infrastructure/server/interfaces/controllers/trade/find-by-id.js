@@ -10,9 +10,10 @@ const findByID = require('../../../../../domain/use-cases/trade/find-by-id-uc');
  */
 async function findByIDController(req, res, next) {
   const queryData = { ...req.query };
+  const { authorization } = req.headers;
 
   try {
-    const tradeData = await findByID(queryData);
+    const tradeData = await findByID(queryData, authorization);
     if (!tradeData) {
       return res.status(404).send();
     }

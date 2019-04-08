@@ -1,6 +1,7 @@
 'use strict';
 
 const Joi = require('joi');
+const checkAuth = require('../../auth/check-auth');
 const createMediAddictedError = require('../../errors/mediaddicted-error');
 const tradeRepository = require('../../repositories/trade-repository');
 
@@ -27,9 +28,16 @@ async function validate(payload) {
  * Gets all the trades from a user using pagination
  * @param {Object} queryData Object with required username and
  * optional page and limit properties
+ * @param {String} auth Auth token
  * @returns {Object} Review's data
  */
-async function getByUsername(queryData) {
+async function getByUsername(queryData, auth) {
+  const { role } = await checkAuth(auth);
+
+  if (role === 'guest') {
+    throw createMediAddictedError(403, 'Not authorized');
+  }
+
   try {
     await validate(queryData);
   } catch (err) {

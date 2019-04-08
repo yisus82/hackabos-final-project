@@ -2,6 +2,7 @@
 
 const Joi = require('joi');
 Joi.objectId = require('joi-objectid')(Joi);
+const checkAuth = require('../../auth/check-auth');
 const createMediAddictedError = require('../../errors/mediaddicted-error');
 const tradeRepository = require('../../repositories/trade-repository');
 
@@ -21,9 +22,16 @@ async function validate(payload) {
 /**
  * Finds a trade using an id
  * @param {Object} queryData Object with an id property
+ * @param {String} auth Auth token
  * @returns {Object} Trade data
  */
-async function findByID(queryData) {
+async function findByID(queryData, auth) {
+  const { role } = await checkAuth(auth);
+
+  if (role === 'guest') {
+    throw createMediAddictedError(403, 'Not authorized');
+  }
+
   try {
     await validate(queryData);
   } catch (err) {

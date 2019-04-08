@@ -10,9 +10,10 @@ const getByUsername = require('../../../../../domain/use-cases/trade/get-by-user
  */
 async function getByUsernameController(req, res, next) {
   const queryData = { ...req.query };
+  const { authorization } = req.headers;
 
   try {
-    const tradeData = await getByUsername(queryData);
+    const tradeData = await getByUsername(queryData, authorization);
     if (!tradeData) {
       return res.status(404).send();
     }

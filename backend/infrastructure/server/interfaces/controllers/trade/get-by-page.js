@@ -10,9 +10,10 @@ const getByPage = require('../../../../../domain/use-cases/trade/get-by-page-uc'
  */
 async function getByPageController(req, res, next) {
   const queryData = { ...req.query };
+  const { authorization } = req.headers;
 
   try {
-    const tradeData = await getByPage(queryData);
+    const tradeData = await getByPage(queryData, authorization);
     if (!tradeData) {
       return res.status(404).send();
     }
