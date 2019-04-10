@@ -1,0 +1,42 @@
+@import 'colors.scss';
+@import url('https://fonts.googleapis.com/css?family=Play');
+
+/* Generic styles */
+
+body {
+  background-color: $main;
+  color: $white;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Play', sans-serif;
+  min-height: 100vh;
+  min-width: 200px;
+  width: 100vw;
+}
+
+a {
+  color: $white;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  justify-content: space-between;
+  width: 100vw;
+}
+
+/* Big screens */
+
+@media (min-width: 1000px) {
+  main {
+    min-height: 80vh;
+    margin-left: 20vw;
+    margin-top: 20vh;
+    width: 75vw;
+  }
+
+  .content {
+    flex-grow: 1;
+  }
+}

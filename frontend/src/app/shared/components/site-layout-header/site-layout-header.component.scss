@@ -1,0 +1,56 @@
+@import 'colors.scss';
+
+/* Generic styles */
+
+:host {
+  .main-header {
+    background-color: $dark;
+    h1 {
+      font-size: 0;
+    }
+
+    a {
+      background-color: $main;
+      color: $white;
+      display: inline-block;
+      padding: 0.6rem;
+      text-align: center;
+      text-decoration: none;
+      width: 100%;
+      &.active {
+        background-color: $contrast;
+      }
+    }
+
+    .logo-link {
+      min-height: 150px;
+      max-height: 15vh;
+      margin-bottom: 1rem;
+      width: 100vw;
+
+      .logo {
+        min-height: 100px;
+        max-height: 15vh;
+      }
+    }
+  }
+}
+
+/* Big screens */
+
+@media (min-width: 1000px) {
+  :host {
+    .main-header {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+      max-width: 20vw;
+      position: fixed;
+      .logo-link {
+        margin-left: 20vw;
+        position: fixed;
+        width: 80vw;
+      }
+    }
+  }
+}

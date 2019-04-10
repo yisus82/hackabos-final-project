@@ -1,0 +1,29 @@
+@import 'colors.scss';
+
+/* Generic styles */
+
+:host {
+  footer {
+    background-color: $contrast;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    padding: 2rem;
+    width: 100vw;
+    p {
+      &:first-child {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+/* Big screens */
+
+@media (min-width: 1000px) {
+  :host {
+    footer {
+      width: 80vw;
+    }
+  }
+}
