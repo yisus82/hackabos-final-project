@@ -12,5 +12,7 @@
     "url": "https://github.com/yisus82/hackabos-final-project/issues"
   },
   "homepage": "https://github.com/yisus82/hackabos-final-project#readme",
-  "dependencies": {}
+  "dependencies": {
+    "global": "^4.3.2"
+  }
 }
