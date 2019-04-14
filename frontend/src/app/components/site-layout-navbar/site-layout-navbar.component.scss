@@ -18,14 +18,14 @@
     li {
       margin: 1rem;
       padding: 0;
-      min-width: 100px;
+      min-width: 110px;
 
       &#avatar {
-        margin: 0 auto;
-      }
-
-      &#username {
-        text-align: center;
+        width: 100%;
+        p {
+          margin-top: 1rem;
+          text-align: center;
+        }
       }
 
       a {

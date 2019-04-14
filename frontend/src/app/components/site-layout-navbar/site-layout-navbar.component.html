@@ -1,8 +1,10 @@
 <a (click)="toggleMenu()"><fa-icon [icon]="logoMenu"></fa-icon></a>
 <nav [style.display]="display">
   <ul>
-    <li id="avatar" *ngIf="username"><app-avatar></app-avatar></li>
-    <li id="username" *ngIf="username">{{ username }}</li>
+    <li id="avatar" *ngIf="username">
+      <app-avatar></app-avatar>
+      <p>{{ username }}</p>
+    </li>
     <li><a routerLink="/reviews/list/1" routerLinkActive="active">Reviews</a></li>
     <li *ngIf="username"><a routerLink="/users/list/1" routerLinkActive="active">Users</a></li>
     <li><a routerLink="/media/list/1" routerLinkActive="active">Media info</a></li>
