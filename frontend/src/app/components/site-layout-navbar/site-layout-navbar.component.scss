@@ -2,13 +2,17 @@
 
 /* Generic styles */
 :host {
+  a {
+    display: inline-block;
+    margin-left: 1rem;
+  }
+
   ul {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
     list-style-type: none;
-    margin: 1rem;
     padding: 0;
 
     li {
@@ -44,6 +48,9 @@
 
 @media (min-width: 1000px) {
   :host {
+    a {
+      display: none;
+    }
     ul {
       height: 100vh;
       margin: auto;

@@ -1,4 +1,5 @@
-<nav>
+<a (click)="toggleMenu()"><fa-icon [icon]="logoMenu"></fa-icon></a>
+<nav [style.display]="display">
   <ul>
     <li id="avatar" *ngIf="username"><app-avatar></app-avatar></li>
     <li id="username" *ngIf="username">{{ username }}</li>

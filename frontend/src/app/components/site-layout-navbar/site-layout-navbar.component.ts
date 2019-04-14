@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { faBars } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-site-layout-navbar',
@@ -7,4 +8,14 @@ import { Component } from '@angular/core';
 })
 export class SiteLayoutNavbarComponent {
   username = 'yisus01';
+  logoMenu = faBars;
+  display = 'block';
+
+  toggleMenu() {
+    if (this.display === 'block') {
+      this.display = 'none';
+    } else {
+      this.display = 'block';
+    }
+  }
 }
