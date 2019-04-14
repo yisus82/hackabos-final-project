@@ -51,14 +51,17 @@
     a {
       display: none;
     }
-    ul {
-      height: 100vh;
-      margin: auto;
-      padding: 0;
-      li {
-        a {
-          display: block;
-          width: 150px;
+    nav {
+      display: block;
+      ul {
+        height: 100vh;
+        margin: auto;
+        padding: 0;
+        li {
+          a {
+            display: block;
+            width: 150px;
+          }
         }
       }
     }

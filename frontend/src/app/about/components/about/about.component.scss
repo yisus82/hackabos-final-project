@@ -1,0 +1,39 @@
+@import 'colors.scss';
+
+:host {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 20px;
+  width: 100%;
+
+  .content {
+    h1 {
+      font-size: 4rem;
+      margin: 20px 0;
+    }
+
+    h2,
+    p {
+      margin: 10px 0;
+    }
+
+    hr {
+      border-color: $white;
+      margin: 20px 0;
+    }
+
+    a {
+      color: $white;
+      display: flex;
+      font-size: 1.2rem;
+      margin-top: 1rem;
+      text-decoration: none;
+
+      fa-icon {
+        margin-right: 1rem;
+      }
+    }
+  }
+}

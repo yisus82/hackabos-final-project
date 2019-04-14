@@ -1,0 +1,23 @@
+<div class="content">
+  <h1>
+    <b>{{ title }}</b>
+  </h1>
+  <h2>{{ subtitle }}</h2>
+
+  <hr />
+
+  <p>{{ description }}</p>
+
+  <ng-container *ngFor="let link of links">
+    <a [href]="link.url" target="_blank"
+      ><fa-icon [icon]="link.icon"></fa-icon><b>{{ link.name }}</b></a
+    >
+  </ng-container>
+
+  <hr />
+
+  <p>{{ contact.description }}</p>
+  <a href="{{ 'mailto:' + contact.mail }}" target="_blank"
+    ><b>{{ contact.mail }}</b></a
+  >
+</div>
