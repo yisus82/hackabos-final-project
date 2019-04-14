@@ -7,7 +7,7 @@ import { faBars } from '@fortawesome/free-solid-svg-icons';
   styleUrls: ['./site-layout-navbar.component.scss']
 })
 export class SiteLayoutNavbarComponent {
-  username = 'yisus01';
+  user;
   logoMenu = faBars;
   display = 'block';
 

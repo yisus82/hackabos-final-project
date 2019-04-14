@@ -1,0 +1,8 @@
+<div class="errors" *ngIf="(errors$ | async)?.length">
+  <p *ngFor="let error of (errors$ | async)">
+    {{ getErrorMessage(error) }}
+  </p>
+  <a (click)="resetErrors()">
+    <fa-icon [icon]="closeIcon"></fa-icon>
+  </a>
+</div>

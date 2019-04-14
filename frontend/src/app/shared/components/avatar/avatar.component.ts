@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 
 @Component({
   selector: 'app-avatar',
@@ -6,10 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./avatar.component.scss']
 })
 export class AvatarComponent implements OnInit {
-
-  constructor() { }
+  @Input() user;
+  imageURL;
 
   ngOnInit() {
+    if (this.user) {
+      this.imageURL = this.user.avatarURL || '/assets/img/avatar.png';
+    } else {
+      this.imageURL = '/assets/img/avatar.png';
+    }
   }
-
 }

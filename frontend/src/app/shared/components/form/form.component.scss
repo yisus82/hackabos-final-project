@@ -1,0 +1,131 @@
+@import 'colors.scss';
+
+:host {
+  ::ng-deep {
+    .form-control {
+      display: block;
+      margin: 30px 0;
+      textarea,
+      input[type='text'],
+      input[type='email'],
+      input[type='password'] {
+        width: 100%;
+        border: 1px solid $main;
+        color: $main;
+        border-radius: 5px;
+        font-size: 1rem;
+        padding: 5px 10px;
+        outline: none;
+        background: $white;
+        height: 100%;
+        transition: all 0.2s ease-in;
+        height: 50px;
+        &:focus {
+          box-shadow: 0 0 3px 2px $white;
+        }
+        &::placeholder {
+          color: $main;
+        }
+      }
+
+      textarea {
+        height: auto;
+        padding: 10px;
+      }
+
+      .checkbox-wrapper {
+        display: block;
+        position: relative;
+        padding-left: 35px;
+        margin-bottom: 12px;
+        cursor: pointer;
+        font-size: 1.1rem;
+        user-select: none;
+        color: $main;
+
+        input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
+          &:checked {
+            ~ .checkmark:after {
+              display: block;
+            }
+          }
+        }
+
+        .checkmark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 25px;
+          width: 25px;
+          background-color: $light;
+          &:after {
+            content: '';
+            position: absolute;
+            display: none;
+          }
+          &:after {
+            left: 9px;
+            top: 4px;
+            width: 9px;
+            height: 14px;
+            border: solid $white;
+            border-width: 0 3px 3px 0;
+            transform: rotate(45deg);
+          }
+        }
+      }
+
+      &.has-error {
+        .error-message {
+          margin-top: 5px;
+          color: $error;
+          font-size: 0.9rem;
+          position: absolute;
+          fa-icon {
+            font-size: 0.8rem;
+            position: relative;
+            top: -1px;
+          }
+        }
+        ::ng-deep {
+          input {
+            border: 1px solid $error;
+            color: $white;
+            background: $error;
+            transition: all 0.2s ease-in;
+            &:focus {
+              box-shadow: none;
+            }
+            &::placeholder {
+              color: $white;
+            }
+          }
+        }
+      }
+    }
+
+    .button-wrapper {
+      display: flex;
+      justify-content: flex-end;
+      button {
+        transition: all 0.2s ease-in;
+        background-color: $dark;
+        color: $white;
+        padding: 20px 30px;
+        border-radius: 5px;
+        font-size: 1rem;
+        font-weight: bold;
+        outline: none;
+        &:hover {
+          opacity: 0.8;
+          transform: scale(1.02);
+        }
+      }
+    }
+  }
+}

@@ -11,8 +11,8 @@ const login = require('../../../../../domain/use-cases/user/login-uc');
 async function loginController(req, res, next) {
   try {
     const accountData = { ...req.body };
-    const token = await login(accountData);
-    return res.json({ token });
+    const { token, ...userProfileData } = await login(accountData);
+    return res.json({ token, ...userProfileData });
   } catch (err) {
     return next(err);
   }

@@ -1,0 +1,16 @@
+<app-form>
+  <app-errors></app-errors>
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <app-form-control [control]="loginForm.get('email')">
+      <input type="text" placeholder="Email" formControlName="email" />
+    </app-form-control>
+    <app-form-control [control]="loginForm.get('password')">
+      <input type="password" placeholder="Password" formControlName="password" />
+    </app-form-control>
+    <div class="button-wrapper">
+      <button type="submit">
+        Login
+      </button>
+    </div>
+  </form>
+</app-form>

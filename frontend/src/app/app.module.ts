@@ -1,5 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { NgxsModule } from '@ngxs/store';
+import { NgxsReduxDevtoolsPluginModule } from '@ngxs/devtools-plugin';
+import { NgxsLoggerPluginModule } from '@ngxs/logger-plugin';
+import { NgxsRouterPluginModule } from '@ngxs/router-plugin';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -11,6 +15,9 @@ import { SiteLayoutNavbarComponent } from './components/site-layout-navbar/site-
 import { ReviewsRoutingModule } from './reviews/reviews-routing.module';
 import { AboutRoutingModule } from './about/about-routing.module';
 import { AboutModule } from './about/about.module';
+import { UsersRoutingModule } from './users/users-routing.module';
+import { UsersModule } from './users/users.module';
+import { environment } from 'src/environments/environment';
 
 @NgModule({
   declarations: [
@@ -21,11 +28,20 @@ import { AboutModule } from './about/about.module';
   ],
   imports: [
     BrowserModule,
+    NgxsReduxDevtoolsPluginModule.forRoot({
+      disabled: environment.production
+    }),
+    NgxsLoggerPluginModule.forRoot({ logger: console, collapsed: false }),
+    NgxsModule.forRoot([], {
+      developmentMode: !environment.production
+    }),
     FontAwesomeModule,
     SharedModule,
     AboutModule,
+    UsersModule,
     ReviewsRoutingModule,
     AboutRoutingModule,
+    UsersRoutingModule,
     AppRoutingModule
   ],
   providers: [],

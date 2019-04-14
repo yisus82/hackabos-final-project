@@ -28,7 +28,7 @@ async function validateSchema(payload) {
 /**
  * Attempts to login an user
  * @param {Object} accountData User account data
- * @returns {String} Auth token
+ * @returns {Object} Auth token and some of the user's profile data
  */
 async function login(accountData) {
   try {
@@ -55,12 +55,16 @@ async function login(accountData) {
     username: userProfileData.username,
     email: userProfileData.email,
     role: userProfileData.role,
+    avatarURL: userProfileData.avatarURL,
   };
   const jwtTokenExpiration = parseInt(process.env.AUTH_ACCESS_TOKEN_TTL, 10);
   const token = jwt.sign(payloadJWT, process.env.AUTH_JWT_SECRET, {
     expiresIn: jwtTokenExpiration,
   });
-  return token;
+  return {
+    token,
+    ...payloadJWT,
+  };
 }
 
 module.exports = login;
