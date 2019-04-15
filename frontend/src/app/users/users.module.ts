@@ -11,9 +11,10 @@ import { ErrorsModule } from '../errors/errors.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './services/error.interceptor';
 import { JwtInterceptor } from './services/jwt.interceptor';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
-  declarations: [LoginComponent],
+  declarations: [LoginComponent, RegisterComponent],
   imports: [
     CommonModule,
     SharedModule,

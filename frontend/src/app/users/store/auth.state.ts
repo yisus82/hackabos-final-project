@@ -59,7 +59,11 @@ export class AuthState {
   }
 
   @Action(RegisterSuccess)
-  registerSuccess(ctx: StateContext<User>) {}
+  registerSuccess({ setState, dispatch }: StateContext<User>) {
+    this.authService.logout();
+    setState(null);
+    dispatch(new Navigate(['/users/login']));
+  }
 
   @Action(GetUserProfile)
   getUserProfile({ dispatch }: StateContext<User>) {

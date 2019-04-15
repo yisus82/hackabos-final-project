@@ -2,25 +2,26 @@
 <nav [style.display]="display">
   <ul>
     <li id="avatar">
-      <app-avatar [user]="user"></app-avatar>
+      <app-avatar [user]="user" *ngIf="user?.username"></app-avatar>
+      <app-avatar *ngIf="!user?.username"></app-avatar>
       <p>{{ user?.username || 'Guest' }}</p>
     </li>
     <li><a routerLink="/reviews/list/1" routerLinkActive="active">Reviews</a></li>
-    <li *ngIf="user">
+    <li *ngIf="user?.username">
       <a routerLink="/users/list/1" routerLinkActive="active">Users</a>
     </li>
     <li><a routerLink="/media/list/1" routerLinkActive="active">Media info</a></li>
     <li><a routerLink="/about" routerLinkActive="active">About</a></li>
-    <li *ngIf="user">
+    <li *ngIf="user?.username">
       <a routerLink="/trades/list/1" routerLinkActive="active">Trades</a>
     </li>
-    <li *ngIf="user">
+    <li *ngIf="user?.username">
       <a routerLink="/users/account" routerLinkActive="active">Account</a>
     </li>
-    <li *ngIf="user">
-      <a routerLink="/logout" routerLinkActive="active">Logout</a>
+    <li *ngIf="user?.username">
+      <a (click)="logout()">Logout</a>
     </li>
-    <li *ngIf="!user">
+    <li *ngIf="!user?.username">
       <a routerLink="/users/login" routerLinkActive="active">Login</a>
     </li>
   </ul>

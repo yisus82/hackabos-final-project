@@ -1,0 +1,23 @@
+<app-form>
+  <app-errors></app-errors>
+  <form [formGroup]="registerForm" (ngSubmit)="register()">
+    <app-form-control [control]="registerForm.get('username')">
+      <input type="text" placeholder="Username" formControlName="username" />
+    </app-form-control>
+    <app-form-control [control]="registerForm.get('email')">
+      <input type="email" placeholder="Email" formControlName="email" />
+    </app-form-control>
+    <app-form-control [control]="registerForm.get('password')">
+      <input type="password" placeholder="Password" formControlName="password" />
+    </app-form-control>
+    <app-form-control [control]="registerForm.get('confirmPassword')" [group]="registerForm">
+      <input type="password" placeholder="Confirm password" formControlName="confirmPassword" />
+    </app-form-control>
+    <div class="button-wrapper">
+      <button>
+        Register
+      </button>
+    </div>
+    <a routerLink="/users/login">Do you have an account already? Click here and login</a>
+  </form>
+</app-form>

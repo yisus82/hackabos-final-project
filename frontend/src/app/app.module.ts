@@ -32,6 +32,7 @@ import { environment } from 'src/environments/environment';
       disabled: environment.production
     }),
     NgxsLoggerPluginModule.forRoot({ logger: console, collapsed: false }),
+    NgxsRouterPluginModule.forRoot(),
     NgxsModule.forRoot([], {
       developmentMode: !environment.production
     }),
