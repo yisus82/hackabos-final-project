@@ -1,5 +1,5 @@
 <app-form>
-  <app-errors></app-errors>
+  <app-error></app-error>
   <form [formGroup]="registerForm" (ngSubmit)="register()">
     <app-form-control [control]="registerForm.get('username')">
       <input type="text" placeholder="Username" formControlName="username" />

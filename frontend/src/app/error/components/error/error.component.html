@@ -1,0 +1,8 @@
+<div class="error" *ngIf="(error$ | async)?.message">
+  <p>
+    {{ getErrorMessage(error$ | async) }}
+  </p>
+  <a (click)="resetError()">
+    <fa-icon [icon]="closeIcon"></fa-icon>
+  </a>
+</div>

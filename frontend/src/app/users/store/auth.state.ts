@@ -18,7 +18,7 @@ import {
 } from './auth.actions';
 import { Navigate } from '@ngxs/router-plugin';
 import { tap, catchError } from 'rxjs/operators';
-import { SetErrors } from '../../errors/store/errors.actions';
+import { SetError } from '../../error/store/error.actions';
 
 @State<User>({
   name: 'auth',
@@ -90,7 +90,7 @@ export class AuthState {
   changePasswordSuccess(ctx: StateContext<User>) {}
 
   @Action([LoginFailed, RegisterFailed, GetUserProfileFailed, ChangePasswordFailed])
-  error({ dispatch }: StateContext<User>, { errors }: any) {
-    dispatch(new SetErrors(errors));
+  error({ dispatch }: StateContext<User>, { error }: any) {
+    dispatch(new SetError(error));
   }
 }

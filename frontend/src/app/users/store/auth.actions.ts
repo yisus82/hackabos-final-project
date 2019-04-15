@@ -1,5 +1,5 @@
 import { LoginRequest, LoginResponse, RegisterRequest, User } from '../auth.models';
-import { Error } from '../../errors/errors.models';
+import { Error } from '../../error/error.models';
 
 export class Login {
   static readonly type = '[Auth] Login';
@@ -13,7 +13,7 @@ export class LoginSuccess {
 
 export class LoginFailed {
   static type = '[Auth] LoginFailed';
-  constructor(public errors: Error[]) {}
+  constructor(public error: Error) {}
 }
 
 export class Logout {
@@ -31,7 +31,7 @@ export class RegisterSuccess {
 
 export class RegisterFailed {
   static type = '[Auth] RegisterFailed';
-  constructor(public errors: Error[]) {}
+  constructor(public error: Error) {}
 }
 
 export class GetUserProfile {
@@ -45,7 +45,7 @@ export class GetUserProfileSuccess {
 
 export class GetUserProfileFailed {
   static type = '[Auth] GetUserProfileFailed';
-  constructor(public error: Error[]) {}
+  constructor(public error: Error) {}
 }
 
 export class ChangePassword {
@@ -59,5 +59,5 @@ export class ChangePasswordSuccess {
 
 export class ChangePasswordFailed {
   static type = '[Auth] ChangePasswordFailed';
-  constructor(public errors: Error[]) {}
+  constructor(public error: Error) {}
 }

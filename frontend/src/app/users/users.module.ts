@@ -7,7 +7,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NgxsModule } from '@ngxs/store';
 import { AuthState } from './store/auth.state';
 import { SharedModule } from '../shared/shared.module';
-import { ErrorsModule } from '../errors/errors.module';
+import { ErrorsModule } from '../error/error.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './services/error.interceptor';
 import { JwtInterceptor } from './services/jwt.interceptor';

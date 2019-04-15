@@ -1,24 +1,24 @@
 import { Component, OnDestroy } from '@angular/core';
-import { Error } from '../../errors.models';
+import { Error } from '../../error.models';
 import { Store, Select } from '@ngxs/store';
-import { ResetErrors } from '../../store/errors.actions';
+import { ResetError } from '../../store/error.actions';
 import { Observable } from 'rxjs';
-import { ErrorState } from '../../store/errors.state';
+import { ErrorState } from '../../store/error.state';
 import { faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
-  selector: 'app-errors',
+  selector: 'app-error',
   templateUrl: './error.component.html',
   styleUrls: ['./error.component.scss']
 })
 export class ErrorComponent implements OnDestroy {
-  @Select(ErrorState) errors$: Observable<Error[]>;
+  @Select(ErrorState) error$: Observable<Error>;
 
   constructor(private store: Store) {}
   closeIcon = faTimesCircle;
 
-  resetErrors() {
-    this.store.dispatch(new ResetErrors());
+  resetError() {
+    this.store.dispatch(new ResetError());
   }
 
   getErrorMessage({ message }: Error) {
@@ -26,6 +26,6 @@ export class ErrorComponent implements OnDestroy {
   }
 
   ngOnDestroy() {
-    this.store.dispatch(new ResetErrors());
+    this.store.dispatch(new ResetError());
   }
 }

@@ -1,10 +1,12 @@
 @import 'colors.scss';
 
-.errors {
+.error {
   background-color: $error;
-  padding: 10px;
   border-radius: 5px;
+  margin: 0 auto;
+  padding: 10px;
   position: relative;
+  width: 90%;
   p {
     color: $white;
     margin: 5px 0;
