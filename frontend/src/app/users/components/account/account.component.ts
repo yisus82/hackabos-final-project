@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Select } from '@ngxs/store';
-import { AuthState } from '../../store/auth.state';
+import { AuthState } from '../../store/auth/auth.state';
 import { Observable } from 'rxjs';
-import { User } from '../../auth.models';
+import { Auth } from '../../auth.models';
 
 @Component({
   selector: 'app-account',
@@ -10,11 +10,11 @@ import { User } from '../../auth.models';
   styleUrls: ['./account.component.scss']
 })
 export class AccountComponent implements OnInit {
-  @Select(AuthState) user$: Observable<User>;
+  @Select(AuthState) authUser$: Observable<Auth>;
   avatarURL: string;
 
   ngOnInit() {
-    this.user$.subscribe(user => {
+    this.authUser$.subscribe(user => {
       if (user && user.avatarURL) {
         this.avatarURL = user.avatarURL || '/assets/img/avatar.png';
       } else {

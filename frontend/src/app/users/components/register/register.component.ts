@@ -3,7 +3,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { MatchPasswordValidator } from '../../validators/match-password.validator';
 import { MailValidator } from '../../validators/mail.validator';
 import { Store, Actions, ofAction } from '@ngxs/store';
-import { Register, RegisterSuccess } from '../../store/auth.actions';
+import { Register, RegisterSuccess } from '../../store/auth/auth.actions';
 
 @Component({
   selector: 'app-register',

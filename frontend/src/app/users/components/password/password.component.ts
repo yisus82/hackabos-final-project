@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { MatchPasswordValidator } from '../../validators/match-password.validator';
 import { Store, Actions, ofAction } from '@ngxs/store';
-import { ChangePassword, ChangePasswordSuccess } from '../../store/auth.actions';
+import { ChangePassword, ChangePasswordSuccess } from '../../store/auth/auth.actions';
 
 @Component({
   selector: 'app-password',

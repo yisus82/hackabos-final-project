@@ -1,0 +1,46 @@
+/* Generic styles */
+:host {
+  display: block;
+  margin: 2rem auto;
+  text-align: center;
+  width: 80%;
+
+  .text {
+    margin-top: 1rem;
+  }
+}
+
+/* Big screens */
+
+@media (min-width: 1000px) {
+  :host {
+    .details {
+      display: flex;
+      flex-direction: row;
+      .text {
+        display: flex;
+        flex-direction: column;
+        margin: 2rem;
+        p {
+          font-size: 2rem;
+          margin: 1rem 0;
+          text-align: left;
+        }
+      }
+    }
+
+    p {
+      font-size: 2rem;
+      margin-top: 2rem;
+      text-align: center;
+
+      a {
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+}

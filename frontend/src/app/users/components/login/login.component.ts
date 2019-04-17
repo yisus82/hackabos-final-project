@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { MailValidator } from '../../validators/mail.validator';
 import { Store } from '@ngxs/store';
-import { Login } from '../../store/auth.actions';
+import { Login } from '../../store/auth/auth.actions';
 
 @Component({
   selector: 'app-login',

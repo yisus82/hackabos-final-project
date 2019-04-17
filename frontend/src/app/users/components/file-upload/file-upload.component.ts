@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Store } from '@ngxs/store';
-import { ChangeAvatarSuccess } from '../../store/auth.actions';
+import { ChangeAvatarSuccess } from '../../store/auth/auth.actions';
 
 class ImageSnippet {
   pending = false;

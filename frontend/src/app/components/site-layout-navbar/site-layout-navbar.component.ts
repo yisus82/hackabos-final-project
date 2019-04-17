@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { faBars } from '@fortawesome/free-solid-svg-icons';
 import { Store, Select } from '@ngxs/store';
-import { Logout } from 'src/app/users/store/auth.actions';
-import { AuthState } from 'src/app/users/store/auth.state';
-import { User } from 'src/app/users/auth.models';
+import { Logout } from 'src/app/users/store/auth/auth.actions';
+import { AuthState } from 'src/app/users/store/auth/auth.state';
+import { Auth } from 'src/app/users/auth.models';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -12,7 +12,7 @@ import { Observable } from 'rxjs';
   styleUrls: ['./site-layout-navbar.component.scss']
 })
 export class SiteLayoutNavbarComponent implements OnInit {
-  @Select(AuthState) user$: Observable<User>;
+  @Select(AuthState) authUser$: Observable<Auth>;
   username;
   avatarURL;
   logoMenu = faBars;
@@ -21,7 +21,7 @@ export class SiteLayoutNavbarComponent implements OnInit {
   constructor(private store: Store) {}
 
   ngOnInit() {
-    this.user$.subscribe(user => {
+    this.authUser$.subscribe(user => {
       if (user) {
         this.username = user.username || 'Guest';
         this.avatarURL = user.avatarURL || '/assets/img/avatar.png';

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { LoginRequest, LoginResponse, User } from '../auth.models';
+import { LoginRequest, LoginResponse } from '../auth.models';
 import { map } from 'rxjs/operators';
 
 @Injectable({
@@ -32,10 +32,6 @@ export class AuthService {
       email,
       password
     });
-  }
-
-  getUserProfile() {
-    return this.http.get<User>(`${environment.apiBaseUrl}/users`);
   }
 
   changePassword({ password }) {
