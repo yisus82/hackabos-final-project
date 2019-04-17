@@ -1,18 +1,20 @@
-<div class="details">
-  <app-avatar
-    [imageUrl]="(userDetails$ | async).avatarURL || '/assets/img/avatar.png'"
-  ></app-avatar>
-  <div class="text">
-    <p><b>Username:</b> {{ (userDetails$ | async).username }}</p>
-    <p><b>Email:</b> {{ (userDetails$ | async).email }}</p>
+<div *ngIf="(userDetails$ | async) as userDetails">
+  <div class="details">
+    <app-avatar [imageUrl]="userDetails.avatarURL || '/assets/img/avatar.png'"></app-avatar>
+    <div class="text">
+      <p><b>Username:</b> {{ userDetails.username }}</p>
+      <p><b>Email:</b> {{ userDetails.email }}</p>
+    </div>
   </div>
+  <hr />
+  <p>
+    <a routerLink="/reviews/{{ userDetails.username }}/list/1"
+      >Go to {{ userDetails.username }}'s reviews</a
+    >
+  </p>
+  <p>
+    <a routerLink="/trades/{{ userDetails.username }}/list/1"
+      >Go to {{ userDetails.username }}'s trades</a
+    >
+  </p>
 </div>
-<hr />
-<p>
-  <a routerLink="/reviews/{username}/list/1"
-    >Go to {{ (userDetails$ | async).username }}'s reviews</a
-  >
-</p>
-<p>
-  <a routerLink="/trades/{username}/list/1">Go to {{ (userDetails$ | async).username }}'s trades</a>
-</p>
