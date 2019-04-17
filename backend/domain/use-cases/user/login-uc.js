@@ -34,7 +34,7 @@ async function login(accountData) {
   try {
     await validateSchema(accountData);
   } catch (err) {
-    throw createMediAddictedError(400, err);
+    throw createMediAddictedError(400, err.details[0].message);
   }
 
   const userProfileData = await userRepository.findByEmail(accountData.email);

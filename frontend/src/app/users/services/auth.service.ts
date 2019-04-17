@@ -38,8 +38,8 @@ export class AuthService {
     return this.http.get<User>(`${environment.apiBaseUrl}/users`);
   }
 
-  changePassword(password: string) {
-    return this.http.patch<string>(`${environment.apiBaseUrl}/users/password`, password);
+  changePassword({ password }) {
+    return this.http.patch<string>(`${environment.apiBaseUrl}/users/password`, { password });
   }
 
   changeAvatar(image: File) {

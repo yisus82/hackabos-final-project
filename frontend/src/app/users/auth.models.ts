@@ -1,7 +1,7 @@
 export interface User {
   email: string;
   username: string;
-  avatarUrl: string;
+  avatarURL: string;
   role: string;
   token: string;
 }
@@ -14,7 +14,7 @@ export interface LoginRequest {
 export interface LoginResponse {
   email: string;
   username: string;
-  avatarUrl: string;
+  avatarURL: string;
   role: string;
   token: string;
 }
@@ -22,5 +22,9 @@ export interface LoginResponse {
 export interface RegisterRequest {
   username: string;
   email: string;
+  password: string;
+}
+
+export interface PasswordRequest {
   password: string;
 }

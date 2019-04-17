@@ -1,4 +1,10 @@
-import { LoginRequest, LoginResponse, RegisterRequest, User } from '../auth.models';
+import {
+  LoginRequest,
+  LoginResponse,
+  RegisterRequest,
+  User,
+  PasswordRequest
+} from '../auth.models';
 import { Error } from '../../error/error.models';
 
 export class Login {
@@ -40,7 +46,6 @@ export class GetUserProfile {
 
 export class GetUserProfileSuccess {
   static readonly type = '[Auth] GetUserProfileSuccess';
-  constructor(public profile: User) {}
 }
 
 export class GetUserProfileFailed {
@@ -50,7 +55,7 @@ export class GetUserProfileFailed {
 
 export class ChangePassword {
   static readonly type = '[Auth] ChangePassword';
-  constructor(public password: string) {}
+  constructor(public password: PasswordRequest) {}
 }
 
 export class ChangePasswordSuccess {
@@ -59,5 +64,15 @@ export class ChangePasswordSuccess {
 
 export class ChangePasswordFailed {
   static type = '[Auth] ChangePasswordFailed';
+  constructor(public error: Error) {}
+}
+
+export class ChangeAvatarSuccess {
+  static readonly type = '[Auth] ChangeAvatarSuccess';
+  constructor(public avatarURL: string) {}
+}
+
+export class ChangeAvatarFailed {
+  static type = '[Auth] ChangeAvatarFailed';
   constructor(public error: Error) {}
 }

@@ -12,8 +12,8 @@ async function activateController(req, res, next) {
   const { verificationCode } = req.query;
 
   try {
-    const message = await activate(verificationCode);
-    return res.send(message);
+    await activate(verificationCode);
+    return res.status(301).redirect(`${process.env.FRONTEND_BASE_URL}/users/login`);
   } catch (err) {
     return next(err);
   }

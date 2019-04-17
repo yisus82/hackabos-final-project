@@ -13,7 +13,8 @@ import { Observable } from 'rxjs';
 })
 export class SiteLayoutNavbarComponent implements OnInit {
   @Select(AuthState) user$: Observable<User>;
-  user;
+  username;
+  avatarURL;
   logoMenu = faBars;
   display = 'block';
 
@@ -21,7 +22,13 @@ export class SiteLayoutNavbarComponent implements OnInit {
 
   ngOnInit() {
     this.user$.subscribe(user => {
-      this.user = user;
+      if (user) {
+        this.username = user.username || 'Guest';
+        this.avatarURL = user.avatarURL || '/assets/img/avatar.png';
+      } else {
+        this.username = 'Guest';
+        this.avatarURL = '/assets/img/avatar.png';
+      }
     });
   }
 

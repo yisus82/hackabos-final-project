@@ -15,7 +15,7 @@ async function validate(payload) {
   const schema = {
     password: Joi.string()
       .regex(/^[a-zA-Z0-9]{3,30}$/)
-      .required(),
+      .required()
   };
 
   return Joi.validate(payload, schema);
@@ -37,7 +37,7 @@ async function changePassword(passwordData, auth) {
   try {
     await validate(passwordData);
   } catch (err) {
-    throw createMediAddictedError(400, err);
+    throw createMediAddictedError(400, err.details[0].message);
   }
 
   const saltRounds = parseInt(process.env.AUTH_BCRYPT_SALT_ROUNDS, 10);

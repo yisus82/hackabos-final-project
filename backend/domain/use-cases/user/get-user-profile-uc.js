@@ -36,7 +36,7 @@ async function getUserProfile(queryData, auth) {
   try {
     await validate(queryData);
   } catch (err) {
-    throw createMediAddictedError(400, err);
+    throw createMediAddictedError(400, err.details[0].message);
   }
 
   return userRepository.getUserProfile(queryData.username);

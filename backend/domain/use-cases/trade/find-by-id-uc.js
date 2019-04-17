@@ -35,7 +35,7 @@ async function findByID(queryData, auth) {
   try {
     await validate(queryData);
   } catch (err) {
-    throw createMediAddictedError(400, err);
+    throw createMediAddictedError(400, err.details[0].message);
   }
 
   return tradeRepository.findByID(queryData.id);

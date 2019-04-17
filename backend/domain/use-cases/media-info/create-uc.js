@@ -39,7 +39,7 @@ async function create(mediaInfoData, auth) {
   try {
     await validateSchema(mediaInfoData);
   } catch (err) {
-    throw createMediAddictedError(400, err);
+    throw createMediAddictedError(400, err.details[0].message);
   }
 
   await mediaInfoRepository.create(

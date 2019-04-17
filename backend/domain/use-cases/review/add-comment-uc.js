@@ -36,7 +36,7 @@ async function addComment(commentData, auth) {
   try {
     await validateSchema(commentData);
   } catch (err) {
-    throw createMediAddictedError(400, err);
+    throw createMediAddictedError(400, err.details[0].message);
   }
 
   await reviewRepository.addComment(commentData.reviewID, commentData.text, username);

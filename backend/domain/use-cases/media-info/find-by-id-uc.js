@@ -12,7 +12,7 @@ const mediaInfoRepository = require('../../repositories/media-info-repository');
  */
 async function validate(payload) {
   const schema = {
-    id: Joi.objectId().required(),
+    id: Joi.objectId().required()
   };
 
   return Joi.validate(payload, schema);
@@ -27,7 +27,7 @@ async function findByID(queryData) {
   try {
     await validate(queryData);
   } catch (err) {
-    throw createMediAddictedError(400, err);
+    throw createMediAddictedError(400, err.details[0].message);
   }
 
   return mediaInfoRepository.findByID(queryData.id);

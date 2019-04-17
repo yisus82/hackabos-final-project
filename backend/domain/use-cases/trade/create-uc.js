@@ -13,7 +13,7 @@ const tradeRepository = require('../../repositories/trade-repository');
 async function validateSchema(payload) {
   const schema = {
     title: Joi.string().required(),
-    text: Joi.string().required(),
+    text: Joi.string().required()
   };
 
   return Joi.validate(payload, schema);
@@ -35,7 +35,7 @@ async function create(tradeData, auth) {
   try {
     await validateSchema(tradeData);
   } catch (err) {
-    throw createMediAddictedError(400, err);
+    throw createMediAddictedError(400, err.details[0].message);
   }
 
   await tradeRepository.create(tradeData.title, tradeData.text, username);

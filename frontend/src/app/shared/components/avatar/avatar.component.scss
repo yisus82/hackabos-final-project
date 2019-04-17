@@ -1,6 +1,11 @@
+@import 'colors.scss';
+
 :host {
   img {
+    background-color: $white;
+    border-radius: 50%;
     display: block;
+    height: 200px;
     margin: 0 auto;
     width: 200px;
   }

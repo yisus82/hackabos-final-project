@@ -27,7 +27,7 @@ async function findByID(queryData) {
   try {
     await validate(queryData);
   } catch (err) {
-    throw createMediAddictedError(400, err);
+    throw createMediAddictedError(400, err.details[0].message);
   }
 
   return reviewRepository.findByID(queryData.id);

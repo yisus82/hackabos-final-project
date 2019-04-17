@@ -37,7 +37,7 @@ async function create(reviewData, auth) {
   try {
     await validateSchema(reviewData);
   } catch (err) {
-    throw createMediAddictedError(400, err);
+    throw createMediAddictedError(400, err.details[0].message);
   }
 
   await reviewRepository.create(reviewData.title, reviewData.text, username, reviewData.mediaInfo);

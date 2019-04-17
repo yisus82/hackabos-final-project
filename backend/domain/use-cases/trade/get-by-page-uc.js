@@ -17,7 +17,7 @@ async function validate(payload) {
       .optional(),
     limit: Joi.number()
       .positive()
-      .optional(),
+      .optional()
   };
 
   return Joi.validate(payload, schema);
@@ -39,7 +39,7 @@ async function getByPage(queryData, auth) {
   try {
     await validate(queryData);
   } catch (err) {
-    throw createMediAddictedError(400, err);
+    throw createMediAddictedError(400, err.details[0].message);
   }
 
   let { page, limit } = queryData;

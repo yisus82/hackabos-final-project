@@ -14,7 +14,9 @@ import {
   Logout,
   ChangePasswordSuccess,
   ChangePasswordFailed,
-  ChangePassword
+  ChangePassword,
+  ChangeAvatarFailed,
+  ChangeAvatarSuccess
 } from './auth.actions';
 import { Navigate } from '@ngxs/router-plugin';
 import { tap, catchError } from 'rxjs/operators';
@@ -68,19 +70,17 @@ export class AuthState {
   @Action(GetUserProfile)
   getUserProfile({ dispatch }: StateContext<User>) {
     return this.authService.getUserProfile().pipe(
-      tap(profileResponse => dispatch(new GetUserProfileSuccess(profileResponse))),
+      tap(profileResponse => dispatch(new GetUserProfileSuccess())),
       catchError(error => dispatch(new GetUserProfileFailed(error.error)))
     );
   }
 
   @Action(GetUserProfileSuccess)
-  getUserProfileSuccess({ patchState }: StateContext<User>, { profile }: GetUserProfileSuccess) {
-    patchState({ ...profile });
-  }
+  getUserProfileSuccess(ctx: StateContext<User>) {}
 
   @Action(ChangePassword, { cancelUncompleted: true })
-  changePassword({ dispatch }: StateContext<User>, { password }: ChangePassword) {
-    return this.authService.changePassword(password).pipe(
+  changePassword({ dispatch }: StateContext<User>, action: ChangePassword) {
+    return this.authService.changePassword(action.password).pipe(
       tap(() => dispatch(new ChangePasswordSuccess())),
       catchError(error => dispatch(new ChangePasswordFailed(error.error)))
     );
@@ -89,7 +89,18 @@ export class AuthState {
   @Action(ChangePasswordSuccess)
   changePasswordSuccess(ctx: StateContext<User>) {}
 
-  @Action([LoginFailed, RegisterFailed, GetUserProfileFailed, ChangePasswordFailed])
+  @Action(ChangeAvatarSuccess)
+  changeAvatarSuccess({ patchState }: StateContext<User>, { avatarURL }) {
+    patchState({ avatarURL });
+  }
+
+  @Action([
+    LoginFailed,
+    RegisterFailed,
+    GetUserProfileFailed,
+    ChangePasswordFailed,
+    ChangeAvatarFailed
+  ])
   error({ dispatch }: StateContext<User>, { error }: any) {
     dispatch(new SetError(error));
   }

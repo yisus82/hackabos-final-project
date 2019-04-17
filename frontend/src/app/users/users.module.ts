@@ -12,9 +12,12 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { ErrorInterceptor } from './services/error.interceptor';
 import { JwtInterceptor } from './services/jwt.interceptor';
 import { RegisterComponent } from './components/register/register.component';
+import { FileUploadComponent } from './components/file-upload/file-upload.component';
+import { PasswordComponent } from './components/password/password.component';
+import { AccountComponent } from './components/account/account.component';
 
 @NgModule({
-  declarations: [LoginComponent, RegisterComponent],
+  declarations: [LoginComponent, RegisterComponent, FileUploadComponent, PasswordComponent, AccountComponent],
   imports: [
     CommonModule,
     SharedModule,

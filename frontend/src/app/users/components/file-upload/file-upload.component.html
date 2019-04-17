@@ -1,0 +1,6 @@
+<label
+  class="image-upload-container"
+  [ngStyle]="{ 'background-image': imageUrl && 'url(' + imageUrl + ')' }"
+>
+  <input #imageInput type="file" accept="image/*" (change)="processFile(imageInput)" />
+</label>
