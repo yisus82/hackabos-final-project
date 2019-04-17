@@ -1,0 +1,22 @@
+@import 'colors.scss';
+
+.info {
+  background-color: $dark;
+  border-radius: 5px;
+  margin: 0 auto;
+  padding: 10px;
+  position: relative;
+  width: 90%;
+  p {
+    color: $white;
+    margin: 5px 0;
+  }
+  a {
+    color: $white;
+    text-decoration: underline;
+    font-size: 1rem;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+  }
+}

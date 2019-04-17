@@ -10,6 +10,8 @@ import { ChangePassword, ChangePasswordSuccess } from '../../store/auth.actions'
   styleUrls: ['./password.component.scss']
 })
 export class PasswordComponent implements OnInit {
+  message;
+
   passwordForm = this.fb.group(
     {
       password: ['', [Validators.required]],
@@ -24,7 +26,10 @@ export class PasswordComponent implements OnInit {
   constructor(private fb: FormBuilder, private store: Store, private actions$: Actions) {}
 
   ngOnInit() {
-    this.actions$.pipe(ofAction(ChangePasswordSuccess)).subscribe(() => this.passwordForm.reset());
+    this.actions$.pipe(ofAction(ChangePasswordSuccess)).subscribe(() => {
+      this.passwordForm.reset();
+      this.message = 'Password changed';
+    });
   }
 
   changePassword() {

@@ -1,0 +1,6 @@
+<div class="info" *ngIf="message">
+  <p>INFO: {{ message }}</p>
+  <a (click)="resetMessage()">
+    <fa-icon [icon]="closeIcon"></fa-icon>
+  </a>
+</div>
