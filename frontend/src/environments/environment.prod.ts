@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiBaseUrl: 'https://mediaddicted-backend.herokuapp.com/'
+  apiBaseUrl: 'https://mediaddicted-backend.herokuapp.com'
 };

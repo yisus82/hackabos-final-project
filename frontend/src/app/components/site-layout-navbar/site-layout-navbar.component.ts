@@ -24,10 +24,10 @@ export class SiteLayoutNavbarComponent implements OnInit {
     this.authUser$.subscribe(user => {
       if (user) {
         this.username = user.username || 'Guest';
-        this.avatarURL = user.avatarURL || '/assets/img/avatar.png';
+        this.avatarURL = user.avatarURL || 'assets/img/avatar.png';
       } else {
         this.username = 'Guest';
-        this.avatarURL = '/assets/img/avatar.png';
+        this.avatarURL = 'assets/img/avatar.png';
       }
     });
   }

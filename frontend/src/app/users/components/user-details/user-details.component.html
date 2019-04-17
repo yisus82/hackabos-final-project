@@ -1,6 +1,6 @@
 <div *ngIf="(userDetails$ | async) as userDetails">
   <div class="details">
-    <app-avatar [imageUrl]="userDetails.avatarURL || '/assets/img/avatar.png'"></app-avatar>
+    <app-avatar [imageUrl]="userDetails.avatarURL || 'assets/img/avatar.png'"></app-avatar>
     <div class="text">
       <p><b>Username:</b> {{ userDetails.username }}</p>
       <p><b>Email:</b> {{ userDetails.email }}</p>

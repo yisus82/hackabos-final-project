@@ -16,9 +16,9 @@ export class AccountComponent implements OnInit {
   ngOnInit() {
     this.authUser$.subscribe(user => {
       if (user && user.avatarURL) {
-        this.avatarURL = user.avatarURL || '/assets/img/avatar.png';
+        this.avatarURL = user.avatarURL || 'assets/img/avatar.png';
       } else {
-        this.avatarURL = '/assets/img/avatar.png';
+        this.avatarURL = 'assets/img/avatar.png';
       }
     });
   }
