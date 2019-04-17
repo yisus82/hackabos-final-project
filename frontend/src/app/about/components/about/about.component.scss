@@ -1,5 +1,6 @@
 @import 'colors.scss';
 
+/* Generic styles */
 :host {
   align-items: center;
   display: flex;
@@ -7,21 +8,13 @@
   justify-content: center;
   padding: 20px;
   width: 100%;
-
   .content {
     h1 {
-      font-size: 4rem;
-      margin: 20px 0;
-    }
-
-    h2,
-    p {
-      margin: 10px 0;
+      font-size: 2rem;
     }
 
     hr {
       border-color: $white;
-      margin: 20px 0;
     }
 
     a {
@@ -33,6 +26,18 @@
 
       fa-icon {
         margin-right: 1rem;
+      }
+    }
+  }
+}
+
+/* Big screens */
+
+@media (min-width: 1000px) {
+  :host {
+    .content {
+      h1 {
+        font-size: 4rem;
       }
     }
   }

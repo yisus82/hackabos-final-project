@@ -7,9 +7,11 @@ import { faGithub, faGithubAlt, faLinkedin } from '@fortawesome/free-brands-svg-
   styleUrls: ['./about.component.scss']
 })
 export class AboutComponent {
-  title = 'Hey there!! 👋';
-  subtitle = 'My name is Jesús Ángel Pérez-Roca Fernández';
-  description = `I'm a full-stack developer and I love coding!!!. You can learn more about me in the followings sites:`;
+  title = 'Welcome to MediAddicted!!!';
+  subtitle = 'This is the website for all the things you love and/or hate.';
+  description = `My name is Jesús Ángel Pérez-Roca Fernández.
+   I'm a full-stack developer and I love coding!!!.
+   You can learn more about me in the followings sites:`;
   links = [
     {
       url: 'https://www.linkedin.com/in/jesusperezrocafernandez/',
