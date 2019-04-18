@@ -5,6 +5,7 @@ import {
   faStepBackward,
   faStepForward
 } from '@fortawesome/free-solid-svg-icons';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-pagination',
@@ -14,20 +15,19 @@ import {
 export class PaginationComponent {
   @Input() currentPage: number;
   @Input() totalPages: number;
+  @Input() hasPrevPage: boolean;
+  @Input() hasNextPage: boolean;
   @Input() resources: string;
   firstIcon = faBackward;
   previousIcon = faStepBackward;
   nextIcon = faStepForward;
   lastIcon = faForward;
 
-  checkDisabled(event) {
-    event.path.forEach(element => {
-      if (element instanceof HTMLElement) {
-        if (element.className === 'disabled') {
-          event.preventDefault();
-          return;
-        }
-      }
-    });
+  constructor(private router: Router) {}
+
+  navigate(canNavigate: boolean, path: string) {
+    if (canNavigate) {
+      this.router.navigateByUrl(path);
+    }
   }
 }

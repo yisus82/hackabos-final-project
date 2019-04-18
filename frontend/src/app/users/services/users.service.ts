@@ -14,6 +14,6 @@ export class UsersService {
   }
 
   getUsers(page: number) {
-    return this.http.get<UsersInfo>(`${environment.apiBaseUrl}/users/list?page=${page}&limit=3`);
+    return this.http.get<UsersInfo>(`${environment.apiBaseUrl}/users/list?page=${page}&limit=10`);
   }
 }

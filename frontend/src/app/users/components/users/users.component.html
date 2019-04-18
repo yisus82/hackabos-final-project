@@ -2,12 +2,16 @@
   <app-pagination
     [currentPage]="usersInfo.page"
     [totalPages]="usersInfo.totalPages"
+    [hasPrevPage]="usersInfo.hasPrevPage"
+    [hasNextPage]="usersInfo.hasNextPage"
     resources="users"
   ></app-pagination>
   <app-user-list [users]="usersInfo.docs"></app-user-list>
   <app-pagination
     [currentPage]="usersInfo.page"
     [totalPages]="usersInfo.totalPages"
+    [hasPrevPage]="usersInfo.hasPrevPage"
+    [hasNextPage]="usersInfo.hasNextPage"
     resources="users"
   ></app-pagination>
 </div>

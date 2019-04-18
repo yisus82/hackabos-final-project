@@ -1,0 +1,14 @@
+@import 'colors.scss';
+
+:host {
+  flex-grow: 1;
+  li {
+    border: 5px solid $white;
+    margin: 1rem;
+  }
+  p {
+    font-size: 2rem;
+    margin-top: 2rem;
+    text-align: center;
+  }
+}

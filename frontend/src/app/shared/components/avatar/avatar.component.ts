@@ -7,4 +7,5 @@ import { Component, Input } from '@angular/core';
 })
 export class AvatarComponent {
   @Input() imageUrl: string;
+  @Input() size = 200;
 }
