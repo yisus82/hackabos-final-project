@@ -23,7 +23,7 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "src/tsconfig.app.json",
             "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["./node_modules/simple-css-reset/reset.css", "src/scss/common.scss"],
+            "styles": ["src/scss/common.scss"],
             "stylePreprocessorOptions": {
               "includePaths": ["src/scss"]
             },
