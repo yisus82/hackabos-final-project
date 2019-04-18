@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UserDetails } from '../users.models';
+import { UserDetails, UsersInfo } from '../users.models';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
@@ -11,5 +11,9 @@ export class UsersService {
 
   getUserProfile(username: string) {
     return this.http.get<UserDetails>(`${environment.apiBaseUrl}/users?username=${username}`);
+  }
+
+  getUsers(page: number) {
+    return this.http.get<UsersInfo>(`${environment.apiBaseUrl}/users/list?page=${page}&limit=3`);
   }
 }

@@ -6,6 +6,7 @@ import { FormControlComponent } from './components/form-control/form-control.com
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormComponent } from './components/form/form.component';
 import { InfoMessageComponent } from './components/info-message/info-message.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { InfoMessageComponent } from './components/info-message/info-message.com
     PageNotFoundComponent,
     FormControlComponent,
     FormComponent,
-    InfoMessageComponent
+    InfoMessageComponent,
+    PaginationComponent
   ],
   imports: [CommonModule, FontAwesomeModule],
   exports: [
@@ -21,7 +23,8 @@ import { InfoMessageComponent } from './components/info-message/info-message.com
     PageNotFoundComponent,
     FormControlComponent,
     FormComponent,
-    InfoMessageComponent
+    InfoMessageComponent,
+    PaginationComponent
   ]
 })
 export class SharedModule {}

@@ -1,6 +1,13 @@
 import { Action, State, Store, StateContext, Selector } from '@ngxs/store';
 import { Users } from '../../users.models';
-import { GetUserProfile, GetUserProfileSuccess, GetUserProfileFailed } from './users.actions';
+import {
+  GetUserProfile,
+  GetUserProfileSuccess,
+  GetUserProfileFailed,
+  GetUsersFailed,
+  GetUsers,
+  GetUsersSuccess
+} from './users.actions';
 import { UsersService } from '../../services/users.service';
 import { tap, catchError } from 'rxjs/operators';
 import { SetError } from '../../../error/store/error.actions';
@@ -8,11 +15,29 @@ import { SetError } from '../../../error/store/error.actions';
 @State<Users>({
   name: 'users',
   defaults: {
-    users: [],
+    usersInfo: {
+      docs: [],
+      totalDocs: 0,
+      limit: 0,
+      hasPrevPage: false,
+      hasNextPage: false,
+      page: 0,
+      totalPages: 0,
+      pagingCounter: 0,
+      prevPage: 0,
+      nextPage: 0
+    },
     userDetails: {
+      _id: '',
+      role: '',
       email: '',
+      password: '',
+      username: '',
       avatarURL: '',
-      username: ''
+      verificationCode: '',
+      verifiedAt: new Date(),
+      createdAt: new Date(),
+      updatedAt: new Date()
     }
   }
 })
@@ -25,8 +50,8 @@ export class UsersState {
   }
 
   @Selector()
-  static getUsers({ users }: Users) {
-    return users;
+  static getUsers({ usersInfo }: Users) {
+    return usersInfo;
   }
 
   @Action(GetUserProfile)
@@ -42,7 +67,20 @@ export class UsersState {
     patchState({ ...userDetails });
   }
 
-  @Action([GetUserProfileFailed])
+  @Action(GetUsers)
+  getUsers({ dispatch }: StateContext<Users>, { page }: GetUsers) {
+    return this.usersService.getUsers(page).pipe(
+      tap(usersResponse => dispatch(new GetUsersSuccess(usersResponse))),
+      catchError(error => dispatch(new GetUsersFailed(error.error)))
+    );
+  }
+
+  @Action(GetUsersSuccess)
+  getUsersSuccess({ patchState }: StateContext<Users>, usersInfo: GetUserProfileSuccess) {
+    patchState({ ...usersInfo });
+  }
+
+  @Action([GetUserProfileFailed, GetUsersFailed])
   error({ dispatch }: StateContext<Users>, { error }: any) {
     if (error && error.message) {
       dispatch(new SetError(error));

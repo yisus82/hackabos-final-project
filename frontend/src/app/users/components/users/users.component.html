@@ -1,0 +1,13 @@
+<div *ngIf="(usersInfo$ | async) as usersInfo">
+  <app-pagination
+    [currentPage]="usersInfo.page"
+    [totalPages]="usersInfo.totalPages"
+    resources="users"
+  ></app-pagination>
+  <app-user-list [users]="usersInfo.docs"></app-user-list>
+  <app-pagination
+    [currentPage]="usersInfo.page"
+    [totalPages]="usersInfo.totalPages"
+    resources="users"
+  ></app-pagination>
+</div>

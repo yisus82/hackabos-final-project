@@ -5,6 +5,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AccountComponent } from './components/account/account.component';
 import { AuthGuard } from './services/auth.guard';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
+import { UsersComponent } from './components/users/users.component';
 
 const routes: Routes = [
   {
@@ -23,6 +24,11 @@ const routes: Routes = [
   {
     path: 'users/:username',
     component: UserDetailsComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'users/list/:page',
+    component: UsersComponent,
     canActivate: [AuthGuard]
   }
 ];

@@ -17,6 +17,9 @@ import { PasswordComponent } from './components/password/password.component';
 import { AccountComponent } from './components/account/account.component';
 import { UserDetailsComponent } from './components/user-details/user-details.component';
 import { UsersState } from './store/users/users.state';
+import { UserListComponent } from './components/user-list/user-list.component';
+import { UserListItemComponent } from './components/user-list-item/user-list-item.component';
+import { UsersComponent } from './components/users/users.component';
 
 @NgModule({
   declarations: [
@@ -25,7 +28,10 @@ import { UsersState } from './store/users/users.state';
     FileUploadComponent,
     PasswordComponent,
     AccountComponent,
-    UserDetailsComponent
+    UserDetailsComponent,
+    UserListComponent,
+    UserListItemComponent,
+    UsersComponent
   ],
   imports: [
     CommonModule,

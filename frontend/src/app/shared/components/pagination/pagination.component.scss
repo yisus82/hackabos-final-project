@@ -1,0 +1,12 @@
+:host {
+  .pagination {
+    margin: 0 auto;
+    width: 300px;
+    a {
+      margin: 0 1rem;
+      &.disabled {
+        cursor: not-allowed;
+      }
+    }
+  }
+}

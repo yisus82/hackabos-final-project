@@ -1,0 +1,27 @@
+<div class="pagination">
+  <a
+    (click)="checkDisabled($event)"
+    [href]="'/' + resources + '/list/1'"
+    [class.disabled]="currentPage > 1 ? null : true"
+    ><fa-icon [icon]="firstIcon"></fa-icon
+  ></a>
+  <a
+    (click)="checkDisabled($event)"
+    [href]="'/' + resources + '/list/' + (currentPage - 1)"
+    [class.disabled]="currentPage > 1 ? null : true"
+    ><fa-icon [icon]="previousIcon"></fa-icon
+  ></a>
+  <span>Page {{ currentPage }} of {{ totalPages }}</span>
+  <a
+    (click)="checkDisabled($event)"
+    [href]="'/' + resources + '/list/' + (currentPage + 1)"
+    [class.disabled]="currentPage < totalPages ? null : true"
+    ><fa-icon [icon]="nextIcon"></fa-icon
+  ></a>
+  <a
+    (click)="checkDisabled($event)"
+    [href]="'/' + resources + '/list/' + totalPages"
+    [class.disabled]="currentPage < totalPages ? null : true"
+    ><fa-icon [icon]="lastIcon"></fa-icon
+  ></a>
+</div>
