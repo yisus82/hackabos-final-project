@@ -19,6 +19,8 @@ import { UsersRoutingModule } from './users/users-routing.module';
 import { UsersModule } from './users/users.module';
 import { environment } from 'src/environments/environment';
 import { ReviewsModule } from './reviews/reviews.module';
+import { TradesRoutingModule } from './trades/trades-routing.module';
+import { TradesModule } from './trades/trades.module';
 
 @NgModule({
   declarations: [
@@ -39,12 +41,14 @@ import { ReviewsModule } from './reviews/reviews.module';
     }),
     FontAwesomeModule,
     SharedModule,
-    AboutModule,
-    UsersModule,
     ReviewsModule,
+    TradesModule,
+    UsersModule,
+    AboutModule,
     ReviewsRoutingModule,
-    AboutRoutingModule,
+    TradesRoutingModule,
     UsersRoutingModule,
+    AboutRoutingModule,
     AppRoutingModule
   ],
   providers: [],
