@@ -1,0 +1,7 @@
+<p class="header">
+  <a [routerLink]="'/users/user/' + comment.author">{{ comment.author }}</a>
+  {{ comment.createdAt | timeAgo }} said:
+</p>
+<p class="text">
+  {{ comment.text }}
+</p>

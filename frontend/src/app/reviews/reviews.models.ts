@@ -34,3 +34,7 @@ export interface ReviewsInfo {
   prevPage?: number;
   nextPage?: number;
 }
+
+export interface CommentRequest {
+  text: string;
+}

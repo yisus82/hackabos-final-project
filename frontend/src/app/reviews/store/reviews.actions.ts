@@ -1,5 +1,5 @@
 import { Error } from '../../error/error.models';
-import { ReviewDetails, ReviewsInfo } from '../reviews.models';
+import { ReviewDetails, ReviewsInfo, Comment, CommentRequest } from '../reviews.models';
 
 export class GetReview {
   static readonly type = '[Reviews] GetReview';
@@ -58,5 +58,20 @@ export class GetReviewsByMediaInfoSuccess {
 
 export class GetReviewsByMediaInfoFailed {
   static type = '[Reviews] GetReviewsByMediaInfoFailed';
+  constructor(public error: Error) {}
+}
+
+export class AddComment {
+  static readonly type = '[Reviews] AddComment';
+  constructor(public comment: CommentRequest, public reviewId: string) {}
+}
+
+export class AddCommentSuccess {
+  static readonly type = '[Reviews] AddCommentSuccess';
+  constructor(public reviewId: string) {}
+}
+
+export class AddCommentFailed {
+  static type = '[Reviews] AddCommentFailed';
   constructor(public error: Error) {}
 }

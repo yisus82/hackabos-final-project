@@ -1,0 +1,6 @@
+<ul class="comment-list" *ngIf="comments.length">
+  <li *ngFor="let comment of comments">
+    <app-comment-list-item [comment]="comment"></app-comment-list-item>
+  </li>
+</ul>
+<p *ngIf="!comments.length">There is nothing in this page yet</p>

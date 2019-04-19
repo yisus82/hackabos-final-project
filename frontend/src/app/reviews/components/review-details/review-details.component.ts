@@ -13,6 +13,7 @@ import { GetReview } from '../../store/reviews.actions';
 })
 export class ReviewDetailsComponent implements OnInit {
   @Select(ReviewsState.getReviewDetails) reviewDetails$: Observable<ReviewDetails>;
+  currentUser = this.store.selectSnapshot(state => state.auth);
 
   constructor(private store: Store, private route: ActivatedRoute) {}
 
@@ -20,5 +21,9 @@ export class ReviewDetailsComponent implements OnInit {
     this.route.params.subscribe(routeParams => {
       this.store.dispatch(new GetReview(routeParams.id));
     });
+  }
+
+  reverseArray(arr: any[]) {
+    return arr.map((item, idx) => arr[arr.length - 1 - idx]);
   }
 }

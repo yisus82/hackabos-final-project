@@ -11,4 +11,10 @@
   </div>
   <a routerLink="/infos/{{ reviewDetails.mediaInfo }}">Go to media info page</a>
   <hr />
+  <app-comment-form
+    [reviewID]="reviewDetails._id"
+    *ngIf="currentUser && currentUser.token"
+  ></app-comment-form>
+  <hr *ngIf="currentUser && currentUser.token" />
+  <app-comment-list [comments]="reverseArray(reviewDetails.comments)"></app-comment-list>
 </div>

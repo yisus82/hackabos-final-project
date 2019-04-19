@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ReviewDetails, ReviewsInfo } from '../reviews.models';
+import { ReviewDetails, ReviewsInfo, Comment } from '../reviews.models';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 
@@ -29,5 +29,12 @@ export class ReviewsService {
     return this.http.get<ReviewsInfo>(
       `${environment.apiBaseUrl}/reviews/list?page=${page}&limit=10`
     );
+  }
+
+  addComment(reviewID: string, text: string) {
+    return this.http.patch(`${environment.apiBaseUrl}/reviews/comment`, {
+      text,
+      reviewID
+    });
   }
 }

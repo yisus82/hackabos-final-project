@@ -12,7 +12,10 @@ import {
   GetReviewsByMediaInfoFailed,
   GetReviewsByUsername,
   GetReviewsByUsernameSuccess,
-  GetReviewsByUsernameFailed
+  GetReviewsByUsernameFailed,
+  AddComment,
+  AddCommentSuccess,
+  AddCommentFailed
 } from './reviews.actions';
 import { ReviewsService } from '../services/reviews.service';
 import { tap, catchError } from 'rxjs/operators';
@@ -122,11 +125,27 @@ export class ReviewsState {
     patchState({ ...reviewsInfo });
   }
 
+  @Action(AddComment)
+  addComment({ dispatch }: StateContext<Reviews>, { reviewId, comment }: AddComment) {
+    const currentUser = this.store.selectSnapshot(state => state.auth);
+
+    return this.reviewsService.addComment(reviewId, comment.text).pipe(
+      tap(() => dispatch(new AddCommentSuccess(reviewId))),
+      catchError(error => dispatch(new AddCommentFailed(error.error)))
+    );
+  }
+
+  @Action(AddCommentSuccess)
+  addCommentSucess({ dispatch }: StateContext<Reviews>, { reviewId }: AddCommentSuccess) {
+    dispatch(new GetReview(reviewId));
+  }
+
   @Action([
     GetReviewFailed,
     GetReviewsFailed,
     GetReviewsByMediaInfoFailed,
-    GetReviewsByUsernameFailed
+    GetReviewsByUsernameFailed,
+    AddCommentFailed
   ])
   error({ dispatch }: StateContext<Reviews>, { error }: any) {
     if (error && error.message) {

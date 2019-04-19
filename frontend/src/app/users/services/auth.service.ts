@@ -35,7 +35,7 @@ export class AuthService {
   }
 
   changePassword({ password }) {
-    return this.http.patch<string>(`${environment.apiBaseUrl}/users/password`, { password });
+    return this.http.patch(`${environment.apiBaseUrl}/users/password`, { password });
   }
 
   changeAvatar(image: File) {
