@@ -5,14 +5,14 @@
       <app-avatar [imageUrl]="avatarURL"></app-avatar>
       <p>{{ username }}</p>
     </li>
-    <li><a routerLink="/reviews/list/1" routerLinkActive="active">Reviews</a></li>
+    <li><a routerLink="/reviews" routerLinkActive="active">Reviews</a></li>
     <li *ngIf="username !== 'Guest'">
-      <a routerLink="/users/list/1" routerLinkActive="active">Users</a>
+      <a routerLink="/users" routerLinkActive="active">Users</a>
     </li>
-    <li><a routerLink="/media/list/1" routerLinkActive="active">Media info</a></li>
+    <li><a routerLink="/media" routerLinkActive="active">Media info</a></li>
     <li><a routerLink="/about" routerLinkActive="active">About</a></li>
     <li *ngIf="username !== 'Guest'">
-      <a routerLink="/trades/list/1" routerLinkActive="active">Trades</a>
+      <a routerLink="/trades" routerLinkActive="active">Trades</a>
     </li>
     <li *ngIf="username !== 'Guest'">
       <a routerLink="/users/account" routerLinkActive="active">Account</a>

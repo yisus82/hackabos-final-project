@@ -1,11 +1,14 @@
 <div *ngIf="(reviewDetails$ | async) as reviewDetails">
   <div class="details">
-    <div class="text">
-      <p><b>Title:</b> {{ reviewDetails.title }}</p>
-      <p><b>Text:</b> {{ reviewDetails.text }}</p>
-      <p><b>Created:</b> {{ reviewDetails.createdAt | timeAgo }}</p>
+    <div class="header">
+      <span>{{ reviewDetails.title }}</span>
+      <span>
+        by <a [routerLink]="'/users/user/' + reviewDetails.author">{{ reviewDetails.author }}</a>
+      </span>
+      <span>{{ reviewDetails.createdAt | timeAgo }}</span>
     </div>
-    <a routerLink="/infos/{{ reviewDetails.mediaInfo }}">Go to media info page</a>
+    <p>{{ reviewDetails.text }}</p>
   </div>
+  <a routerLink="/infos/{{ reviewDetails.mediaInfo }}">Go to media info page</a>
   <hr />
 </div>

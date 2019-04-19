@@ -4,7 +4,7 @@
       {{ review.title }}
     </h1>
     <p>
-      Made by <a [routerLink]="'/users/' + review.author">{{ review.author }}</a>
+      Made by <a [routerLink]="'/users/user/' + review.author">{{ review.author }}</a>
     </p>
     <p class="date">{{ review.createdAt | timeAgo }}</p>
   </header>

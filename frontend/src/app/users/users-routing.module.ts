@@ -22,13 +22,23 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'users/:username',
-    component: UserDetailsComponent,
-    canActivate: [AuthGuard]
+    path: 'users',
+    redirectTo: '/users/list/1',
+    pathMatch: 'full'
+  },
+  {
+    path: 'users/list',
+    redirectTo: '/users/list/1',
+    pathMatch: 'full'
   },
   {
     path: 'users/list/:page',
     component: UsersComponent,
+    canActivate: [AuthGuard]
+  },
+  {
+    path: 'users/user/:username',
+    component: UserDetailsComponent,
     canActivate: [AuthGuard]
   }
 ];

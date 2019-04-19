@@ -11,16 +11,46 @@ const routes: Routes = [
     pathMatch: 'full'
   },
   {
+    path: 'reviews',
+    redirectTo: '/reviews/list/1',
+    pathMatch: 'full'
+  },
+  {
+    path: 'reviews/list',
+    redirectTo: '/reviews/list/1',
+    pathMatch: 'full'
+  },
+  {
     path: 'reviews/list/:page',
     component: ReviewsComponent
   },
   {
-    path: 'reviews/:username/list/:page',
+    path: 'reviews/user/:username',
+    redirectTo: '/reviews/user/:username/list/1',
+    pathMatch: 'full'
+  },
+  {
+    path: 'reviews/user/:username/list',
+    redirectTo: '/reviews/user/:username/list/1',
+    pathMatch: 'full'
+  },
+  {
+    path: 'reviews/user/:username/list/:page',
     component: ReviewsComponent,
     canActivate: [AuthGuard]
   },
   {
-    path: 'reviews/:mediaInfo/list/:page',
+    path: 'reviews/media/:mediaInfo',
+    redirectTo: '/reviews/media/:mediaInfo/list/1',
+    pathMatch: 'full'
+  },
+  {
+    path: 'reviews/media/:mediaInfo/list',
+    redirectTo: '/reviews/media/:mediaInfo/list/1',
+    pathMatch: 'full'
+  },
+  {
+    path: 'reviews/media/:mediaInfo/list/:page',
     component: ReviewsComponent
   },
   {
