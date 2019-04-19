@@ -1,0 +1,13 @@
+/* Big screens */
+
+@media (min-width: 1000px) {
+  .review-cards {
+    display: flex;
+    flex-wrap: wrap;
+  }
+
+  app-review-cards-item {
+    margin: 1rem auto;
+    width: 45%;
+  }
+}

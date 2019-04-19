@@ -1,0 +1,4 @@
+<div class="review-cards" *ngIf="reviews.length">
+  <app-review-cards-item [review]="review" *ngFor="let review of reviews"></app-review-cards-item>
+</div>
+<p *ngIf="!reviews.length">There is nothing in this page yet</p>

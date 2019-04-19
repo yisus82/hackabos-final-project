@@ -1,0 +1,11 @@
+<div *ngIf="(reviewDetails$ | async) as reviewDetails">
+  <div class="details">
+    <div class="text">
+      <p><b>Title:</b> {{ reviewDetails.title }}</p>
+      <p><b>Text:</b> {{ reviewDetails.text }}</p>
+      <p><b>Created:</b> {{ reviewDetails.createdAt | timeAgo }}</p>
+    </div>
+    <a routerLink="/infos/{{ reviewDetails.mediaInfo }}">Go to media info page</a>
+  </div>
+  <hr />
+</div>

@@ -18,6 +18,7 @@ import { AboutModule } from './about/about.module';
 import { UsersRoutingModule } from './users/users-routing.module';
 import { UsersModule } from './users/users.module';
 import { environment } from 'src/environments/environment';
+import { ReviewsModule } from './reviews/reviews.module';
 
 @NgModule({
   declarations: [
@@ -40,6 +41,7 @@ import { environment } from 'src/environments/environment';
     SharedModule,
     AboutModule,
     UsersModule,
+    ReviewsModule,
     ReviewsRoutingModule,
     AboutRoutingModule,
     UsersRoutingModule,

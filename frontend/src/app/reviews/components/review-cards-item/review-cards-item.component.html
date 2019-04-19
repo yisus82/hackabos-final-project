@@ -1,0 +1,15 @@
+<article>
+  <header>
+    <h1>
+      {{ review.title }}
+    </h1>
+    <p>
+      Made by <a [routerLink]="'/users/' + review.author">{{ review.author }}</a>
+    </p>
+    <p class="date">{{ review.createdAt | timeAgo }}</p>
+  </header>
+  <p>
+    {{ review.text }}
+  </p>
+  <a [routerLink]="'/reviews/' + review._id">Go to review details</a>
+</article>
