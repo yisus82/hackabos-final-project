@@ -1,3 +1,15 @@
-<p>
-  trade-cards-item works!
-</p>
+<article>
+  <header>
+    <h1>
+      {{ trade.title }}
+    </h1>
+    <p>
+      Made by <a [routerLink]="'/users/user/' + trade.author">{{ trade.author }}</a>
+    </p>
+    <p class="date">{{ trade.createdAt | timeAgo }}</p>
+  </header>
+  <p>
+    {{ trade.text }}
+  </p>
+  <a [routerLink]="'/trades/' + trade._id">Go to trade details</a>
+</article>

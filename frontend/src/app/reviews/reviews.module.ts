@@ -12,7 +12,6 @@ import { HttpClientModule } from '@angular/common/http';
 import { ErrorsModule } from '../error/error.module';
 import { NgxsModule } from '@ngxs/store';
 import { ReviewsState } from './store/reviews.state';
-import { TimeAgoPipe } from 'time-ago-pipe';
 import { CommentListComponent } from './components/comment-list/comment-list.component';
 import { CommentListItemComponent } from './components/comment-list-item/comment-list-item.component';
 import { CommentFormComponent } from './components/comment-form/comment-form.component';
@@ -23,7 +22,6 @@ import { CommentFormComponent } from './components/comment-form/comment-form.com
     ReviewCardsComponent,
     ReviewCardsItemComponent,
     ReviewDetailsComponent,
-    TimeAgoPipe,
     CommentListComponent,
     CommentListItemComponent,
     CommentFormComponent

@@ -1,3 +1,4 @@
-<p>
-  trade-cards works!
-</p>
+<div class="trade-cards" *ngIf="trades.length">
+  <app-trade-cards-item [trade]="trade" *ngFor="let trade of trades"></app-trade-cards-item>
+</div>
+<p *ngIf="!trades.length">There is nothing in this page yet</p>

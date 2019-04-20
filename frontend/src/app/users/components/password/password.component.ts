@@ -10,7 +10,7 @@ import { ChangePassword, ChangePasswordSuccess } from '../../store/auth/auth.act
   styleUrls: ['./password.component.scss']
 })
 export class PasswordComponent implements OnInit {
-  message;
+  message = '';
 
   passwordForm = this.fb.group(
     {

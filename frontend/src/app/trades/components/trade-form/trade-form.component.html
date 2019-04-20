@@ -1,0 +1,16 @@
+<app-form>
+  <app-error></app-error>
+  <form [formGroup]="tradeForm" (ngSubmit)="create()">
+    <app-form-control [control]="tradeForm.get('title')">
+      <input type="text" placeholder="What do you want to trade?" formControlName="title" />
+    </app-form-control>
+    <app-form-control [control]="tradeForm.get('text')">
+      <input type="text" placeholder="Describe your trade conditions..." formControlName="text" />
+    </app-form-control>
+    <div class="button-wrapper">
+      <button type="submit">
+        Publish
+      </button>
+    </div>
+  </form>
+</app-form>

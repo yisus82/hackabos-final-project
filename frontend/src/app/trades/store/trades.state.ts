@@ -12,11 +12,15 @@ import {
   GetTradesByUsernameFailed,
   AddOffer,
   AddOfferSuccess,
-  AddOfferFailed
+  AddOfferFailed,
+  CreateTrade,
+  CreateTradeSuccess,
+  CreateTradeFailed
 } from './trades.actions';
 import { TradesService } from '../services/trades.service';
 import { tap, catchError } from 'rxjs/operators';
 import { SetError } from '../../error/store/error.actions';
+import { Navigate } from '@ngxs/router-plugin';
 
 @State<Trades>({
   name: 'trades',
@@ -98,8 +102,6 @@ export class TradesState {
 
   @Action(AddOffer)
   addoffer({ dispatch }: StateContext<Trades>, { tradeId, offer }: AddOffer) {
-    const currentUser = this.store.selectSnapshot(state => state.auth);
-
     return this.tradesService.addOffer(tradeId, offer.text).pipe(
       tap(() => dispatch(new AddOfferSuccess(tradeId))),
       catchError(error => dispatch(new AddOfferFailed(error.error)))
@@ -111,7 +113,26 @@ export class TradesState {
     dispatch(new GetTrade(tradeId));
   }
 
-  @Action([GetTradeFailed, GetTradesFailed, GetTradesByUsernameFailed, AddOfferFailed])
+  @Action(CreateTrade)
+  createTrade({ dispatch }: StateContext<Trades>, { trade }: CreateTrade) {
+    return this.tradesService.createTrade(trade.title, trade.text).pipe(
+      tap(() => dispatch(new CreateTradeSuccess())),
+      catchError(error => dispatch(new CreateTradeFailed(error.error)))
+    );
+  }
+
+  @Action(CreateTradeSuccess)
+  createTradeSucess({ dispatch }: StateContext<Trades>) {
+    dispatch(new Navigate(['/trades']));
+  }
+
+  @Action([
+    GetTradeFailed,
+    GetTradesFailed,
+    GetTradesByUsernameFailed,
+    AddOfferFailed,
+    CreateTradeFailed
+  ])
   error({ dispatch }: StateContext<Trades>, { error }: any) {
     if (error && error.message) {
       dispatch(new SetError(error));

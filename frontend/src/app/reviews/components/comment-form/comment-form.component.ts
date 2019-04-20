@@ -1,14 +1,14 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
-import { Store } from '@ngxs/store';
-import { AddComment } from '../../store/reviews.actions';
+import { Store, ofAction, Actions } from '@ngxs/store';
+import { AddComment, AddCommentSuccess } from '../../store/reviews.actions';
 
 @Component({
   selector: 'app-comment-form',
   templateUrl: './comment-form.component.html',
   styleUrls: ['./comment-form.component.scss']
 })
-export class CommentFormComponent {
+export class CommentFormComponent implements OnInit {
   @Input() reviewID: string;
   commentForm = this.fb.group(
     {
@@ -17,7 +17,11 @@ export class CommentFormComponent {
     { updateOn: 'blur' }
   );
 
-  constructor(private fb: FormBuilder, private store: Store) {}
+  constructor(private fb: FormBuilder, private store: Store, private actions$: Actions) {}
+
+  ngOnInit() {
+    this.actions$.pipe(ofAction(AddCommentSuccess)).subscribe(() => this.commentForm.reset());
+  }
 
   comment() {
     if (this.commentForm.valid) {

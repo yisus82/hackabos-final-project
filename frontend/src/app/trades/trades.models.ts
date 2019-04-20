@@ -37,3 +37,8 @@ export interface TradesInfo {
 export interface OfferRequest {
   text: string;
 }
+
+export interface TradeRequest {
+  title: string;
+  text: string;
+}

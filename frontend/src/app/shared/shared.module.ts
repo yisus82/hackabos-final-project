@@ -7,6 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { FormComponent } from './components/form/form.component';
 import { InfoMessageComponent } from './components/info-message/info-message.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { TimeAgoPipe } from 'time-ago-pipe';
 
 @NgModule({
   declarations: [
@@ -15,7 +16,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     FormControlComponent,
     FormComponent,
     InfoMessageComponent,
-    PaginationComponent
+    PaginationComponent,
+    TimeAgoPipe
   ],
   imports: [CommonModule, FontAwesomeModule],
   exports: [
@@ -24,7 +26,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     FormControlComponent,
     FormComponent,
     InfoMessageComponent,
-    PaginationComponent
+    PaginationComponent,
+    TimeAgoPipe
   ]
 })
 export class SharedModule {}

@@ -1,3 +1,19 @@
-<p>
-  trade-details works!
-</p>
+<div *ngIf="(tradeDetails$ | async) as tradeDetails">
+  <div class="details">
+    <div class="header">
+      <span>{{ tradeDetails.title }}</span>
+      <span>
+        by <a [routerLink]="'/users/user/' + tradeDetails.author">{{ tradeDetails.author }}</a>
+      </span>
+      <span>{{ tradeDetails.createdAt | timeAgo }}</span>
+    </div>
+    <p>{{ tradeDetails.text }}</p>
+  </div>
+  <hr />
+  <app-offer-form
+    [tradeID]="tradeDetails._id"
+    *ngIf="currentUser && currentUser.token"
+  ></app-offer-form>
+  <hr *ngIf="currentUser && currentUser.token" />
+  <app-offer-list [offers]="reverseArray(tradeDetails.offers)"></app-offer-list>
+</div>

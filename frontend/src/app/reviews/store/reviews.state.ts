@@ -127,8 +127,6 @@ export class ReviewsState {
 
   @Action(AddComment)
   addComment({ dispatch }: StateContext<Reviews>, { reviewId, comment }: AddComment) {
-    const currentUser = this.store.selectSnapshot(state => state.auth);
-
     return this.reviewsService.addComment(reviewId, comment.text).pipe(
       tap(() => dispatch(new AddCommentSuccess(reviewId))),
       catchError(error => dispatch(new AddCommentFailed(error.error)))

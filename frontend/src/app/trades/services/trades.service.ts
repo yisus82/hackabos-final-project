@@ -29,4 +29,11 @@ export class TradesService {
       tradeID
     });
   }
+
+  createTrade(title: string, text: string) {
+    return this.http.post(`${environment.apiBaseUrl}/trades`, {
+      title,
+      text
+    });
+  }
 }

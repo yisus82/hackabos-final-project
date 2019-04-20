@@ -15,6 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { ErrorsModule } from '../error/error.module';
 import { NgxsModule } from '@ngxs/store';
 import { TradesState } from './store/trades.state';
+import { TradeFormComponent } from './components/trade-form/trade-form.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { TradesState } from './store/trades.state';
     TradeCardsComponent,
     TradeCardsItemComponent,
     TradeDetailsComponent,
-    TradesComponent
+    TradesComponent,
+    TradeFormComponent
   ],
   imports: [
     CommonModule,

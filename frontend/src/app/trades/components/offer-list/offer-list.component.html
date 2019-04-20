@@ -1,3 +1,6 @@
-<p>
-  offer-list works!
-</p>
+<ul class="offer-list" *ngIf="offers.length">
+  <li *ngFor="let offer of offers">
+    <app-offer-list-item [offer]="offer"></app-offer-list-item>
+  </li>
+</ul>
+<p *ngIf="!offers.length">There are no offers yet</p>

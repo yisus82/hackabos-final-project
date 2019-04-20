@@ -1,0 +1,11 @@
+@import 'colors.scss';
+
+:host {
+  p {
+    padding: 0.5rem;
+  }
+
+  .header {
+    background-color: $dark;
+  }
+}

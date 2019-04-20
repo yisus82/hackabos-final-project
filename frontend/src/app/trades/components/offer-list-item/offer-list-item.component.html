@@ -1,3 +1,7 @@
-<p>
-  offer-list-item works!
+<p class="header">
+  <a [routerLink]="'/users/user/' + offer.author">{{ offer.author }}</a>
+  {{ offer.createdAt | timeAgo }} said:
+</p>
+<p class="text">
+  {{ offer.text }}
 </p>

@@ -1,5 +1,5 @@
 import { Error } from '../../error/error.models';
-import { TradeDetails, TradesInfo, Offer, OfferRequest } from '../trades.models';
+import { TradeDetails, TradesInfo, Offer, OfferRequest, TradeRequest } from '../trades.models';
 
 export class GetTrade {
   static readonly type = '[Trades] GetTrade';
@@ -58,5 +58,19 @@ export class AddOfferSuccess {
 
 export class AddOfferFailed {
   static type = '[Trades] AddOfferFailed';
+  constructor(public error: Error) {}
+}
+
+export class CreateTrade {
+  static readonly type = '[Trades] CreateTrade';
+  constructor(public trade: TradeRequest) {}
+}
+
+export class CreateTradeSuccess {
+  static readonly type = '[Trades] CreateTradeSuccess';
+}
+
+export class CreateTradeFailed {
+  static type = '[Trades] CreateTradeFailed';
   constructor(public error: Error) {}
 }

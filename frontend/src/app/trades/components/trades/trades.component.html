@@ -1,3 +1,19 @@
-<p>
-  trades works!
-</p>
+<app-trade-form></app-trade-form>
+<hr />
+<div *ngIf="(tradesInfo$ | async) as tradesInfo">
+  <app-pagination
+    [currentPage]="tradesInfo.page"
+    [totalPages]="tradesInfo.totalPages"
+    [hasPrevPage]="tradesInfo.hasPrevPage"
+    [hasNextPage]="tradesInfo.hasNextPage"
+    resources="trades"
+  ></app-pagination>
+  <app-trade-cards [trades]="tradesInfo.docs"></app-trade-cards>
+  <app-pagination
+    [currentPage]="tradesInfo.page"
+    [totalPages]="tradesInfo.totalPages"
+    [hasPrevPage]="tradesInfo.hasPrevPage"
+    [hasNextPage]="tradesInfo.hasNextPage"
+    resources="trades"
+  ></app-pagination>
+</div>
