@@ -1,0 +1,16 @@
+<app-form>
+  <app-error></app-error>
+  <form [formGroup]="reviewForm" (ngSubmit)="createReview()">
+    <app-form-control [control]="reviewForm.get('title')">
+      <input type="text" placeholder="Put a title to your review..." formControlName="title" />
+    </app-form-control>
+    <app-form-control [control]="reviewForm.get('text')">
+      <textarea placeholder="What are you gonna tell us?" formControlName="text"> </textarea>
+    </app-form-control>
+    <div class="button-wrapper">
+      <button type="submit">
+        Publish
+      </button>
+    </div>
+  </form>
+</app-form>

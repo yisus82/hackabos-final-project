@@ -21,6 +21,8 @@ import { environment } from 'src/environments/environment';
 import { ReviewsModule } from './reviews/reviews.module';
 import { TradesRoutingModule } from './trades/trades-routing.module';
 import { TradesModule } from './trades/trades.module';
+import { MediaInfosModule } from './media-infos/media-infos.module';
+import { MediaInfosRoutingModule } from './media-infos/media-infos-routing.module';
 
 @NgModule({
   declarations: [
@@ -42,10 +44,12 @@ import { TradesModule } from './trades/trades.module';
     FontAwesomeModule,
     SharedModule,
     ReviewsModule,
+    MediaInfosModule,
     TradesModule,
     UsersModule,
     AboutModule,
     ReviewsRoutingModule,
+    MediaInfosRoutingModule,
     TradesRoutingModule,
     UsersRoutingModule,
     AboutRoutingModule,

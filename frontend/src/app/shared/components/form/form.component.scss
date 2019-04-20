@@ -31,6 +31,7 @@
       textarea {
         height: auto;
         padding: 10px;
+        resize: none;
       }
 
       .checkbox-wrapper {
@@ -93,7 +94,8 @@
           }
         }
         ::ng-deep {
-          input {
+          input,
+          textarea {
             border: 1px solid $error;
             color: $white;
             background: $error;

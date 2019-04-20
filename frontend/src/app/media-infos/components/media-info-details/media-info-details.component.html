@@ -1,0 +1,16 @@
+<div *ngIf="(mediaInfoDetails$ | async) as mediaInfoDetails">
+  <div class="details">
+    <div class="header">
+      <img [src]="mediaInfoDetails.imageURL" alt="Image from the media" />
+      <span>{{ mediaInfoDetails.title }}</span>
+      <span>{{ mediaInfoDetails.category }}</span>
+    </div>
+    <p>{{ mediaInfoDetails.description }}</p>
+  </div>
+  <app-review-form
+    [mediaInfoID]="mediaInfoDetails._id"
+    *ngIf="currentUser && currentUser.token"
+  ></app-review-form>
+  <hr *ngIf="currentUser && currentUser.token" />
+  <a routerLink="/reviews/media/{{ mediaInfoDetails._id }}">Go to media info reviews</a>
+</div>

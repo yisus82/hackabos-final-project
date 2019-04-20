@@ -1,0 +1,17 @@
+<div *ngIf="(mediaInfosInfo$ | async) as mediaInfosInfo">
+  <app-pagination
+    [currentPage]="mediaInfosInfo.page"
+    [totalPages]="mediaInfosInfo.totalPages"
+    [hasPrevPage]="mediaInfosInfo.hasPrevPage"
+    [hasNextPage]="mediaInfosInfo.hasNextPage"
+    resources="mediaInfos"
+  ></app-pagination>
+  <app-media-info-cards [mediaInfos]="mediaInfosInfo.docs"></app-media-info-cards>
+  <app-pagination
+    [currentPage]="mediaInfosInfo.page"
+    [totalPages]="mediaInfosInfo.totalPages"
+    [hasPrevPage]="mediaInfosInfo.hasPrevPage"
+    [hasNextPage]="mediaInfosInfo.hasNextPage"
+    resources="mediaInfos"
+  ></app-pagination>
+</div>

@@ -1,0 +1,7 @@
+<div class="media-info-cards" *ngIf="mediaInfos.length">
+  <app-media-info-cards-item
+    [mediaInfo]="mediaInfo"
+    *ngFor="let mediaInfo of mediaInfos"
+  ></app-media-info-cards-item>
+</div>
+<p *ngIf="!mediaInfos.length">There is nothing in this page yet</p>

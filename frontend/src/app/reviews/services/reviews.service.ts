@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { ReviewDetails, ReviewsInfo, Comment } from '../reviews.models';
+import { ReviewDetails, ReviewsInfo } from '../reviews.models';
 import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 

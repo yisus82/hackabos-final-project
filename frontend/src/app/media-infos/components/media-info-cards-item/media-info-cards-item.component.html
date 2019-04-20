@@ -1,0 +1,14 @@
+<article>
+  <header>
+    <h1>
+      {{ mediaInfo.title }}
+    </h1>
+    <p>
+      {{ mediaInfo.category }}
+    </p>
+  </header>
+  <p>
+    {{ mediaInfo.description }}
+  </p>
+  <a [routerLink]="'/infos/' + mediaInfo._id">Go to Media Info details</a>
+</article>

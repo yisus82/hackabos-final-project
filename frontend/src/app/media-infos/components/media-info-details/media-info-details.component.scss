@@ -1,0 +1,60 @@
+@import 'colors.scss';
+
+/* Generic styles */
+:host {
+  display: block;
+  margin: 2rem auto;
+  width: 80%;
+
+  .details {
+    border: 2px solid $white;
+    .header {
+      background-color: $dark;
+      border-bottom: 2px solid $white;
+      display: flex;
+      flex-direction: column;
+      padding: 0.5rem;
+      span {
+        text-align: center;
+        a {
+          display: inline;
+        }
+      }
+    }
+
+    p {
+      padding: 1rem;
+    }
+  }
+  a {
+    display: block;
+    margin: 1rem 0;
+    text-align: center;
+  }
+}
+
+/* Big screens */
+
+@media (min-width: 1000px) {
+  :host {
+    .details {
+      .header {
+        span {
+          font-size: 1.5rem;
+          margin: 0.5rem;
+        }
+      }
+      p {
+        font-size: 1.5rem;
+        text-align: left;
+      }
+    }
+    a {
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+  }
+}
