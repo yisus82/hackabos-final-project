@@ -14,13 +14,17 @@ import { GetTradesByUsername, GetTrades } from '../../store/trades.actions';
 export class TradesComponent implements OnInit {
   @Select(TradesState.getTrades) tradesInfo$: Observable<TradesInfo>;
 
+  resources: string;
+
   constructor(private store: Store, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.params.subscribe(routeParams => {
       if (routeParams.username) {
+        this.resources = 'trades/user/' + routeParams.username;
         this.store.dispatch(new GetTradesByUsername(routeParams.page, routeParams.username));
       } else {
+        this.resources = 'trades';
         this.store.dispatch(new GetTrades(routeParams.page));
       }
     });

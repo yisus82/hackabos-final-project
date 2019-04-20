@@ -4,7 +4,7 @@
     [totalPages]="reviewsInfo.totalPages"
     [hasPrevPage]="reviewsInfo.hasPrevPage"
     [hasNextPage]="reviewsInfo.hasNextPage"
-    resources="reviews"
+    [resources]="resources"
   ></app-pagination>
   <app-review-cards [reviews]="reviewsInfo.docs"></app-review-cards>
   <app-pagination
@@ -12,6 +12,6 @@
     [totalPages]="reviewsInfo.totalPages"
     [hasPrevPage]="reviewsInfo.hasPrevPage"
     [hasNextPage]="reviewsInfo.hasNextPage"
-    resources="reviews"
+    [resources]="resources"
   ></app-pagination>
 </div>

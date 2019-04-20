@@ -18,15 +18,20 @@ import {
 export class ReviewsComponent implements OnInit {
   @Select(ReviewsState.getReviews) reviewsInfo$: Observable<ReviewsInfo>;
 
+  resources: string;
+
   constructor(private store: Store, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.route.params.subscribe(routeParams => {
       if (routeParams.username) {
+        this.resources = 'reviews/user/' + routeParams.username;
         this.store.dispatch(new GetReviewsByUsername(routeParams.page, routeParams.username));
       } else if (routeParams.mediaInfo) {
+        this.resources = 'reviews/media/' + routeParams.mediaInfo;
         this.store.dispatch(new GetReviewsByMediaInfo(routeParams.page, routeParams.mediaInfo));
       } else {
+        this.resources = 'reviews';
         this.store.dispatch(new GetReviews(routeParams.page));
       }
     });
