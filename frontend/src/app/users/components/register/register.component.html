@@ -2,12 +2,17 @@
   <app-error></app-error>
   <form [formGroup]="registerForm" (ngSubmit)="register()">
     <app-form-control [control]="registerForm.get('username')">
-      <input type="text" placeholder="Username" formControlName="username" />
+      <input
+        type="text"
+        placeholder="Username"
+        (change)="inputChange($event, 'username')"
+        formControlName="username"
+      />
     </app-form-control>
     <app-form-control [control]="registerForm.get('email')">
       <input
         type="email"
-        (change)="inputChange($event)"
+        (change)="inputChange($event, 'email')"
         placeholder="Email"
         formControlName="email"
       />
@@ -15,7 +20,7 @@
     <app-form-control [control]="registerForm.get('password')">
       <input
         type="password"
-        (change)="inputChange($event)"
+        (change)="inputChange($event, 'password')"
         placeholder="Password"
         formControlName="password"
       />

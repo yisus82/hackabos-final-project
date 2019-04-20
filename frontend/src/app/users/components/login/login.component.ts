@@ -26,7 +26,7 @@ export class LoginComponent {
     }
   }
 
-  inputChange(data) {
-    data.control.setValue(data.$event.target.value);
+  inputChange(event, controlName) {
+    this.loginForm.get(controlName).setValue(event.target.value);
   }
 }

@@ -4,7 +4,7 @@
     <app-form-control [control]="loginForm.get('email')">
       <input
         type="text"
-        (change)="inputChange($event)"
+        (change)="inputChange($event, 'email')"
         placeholder="Email"
         formControlName="email"
       />
@@ -12,7 +12,7 @@
     <app-form-control [control]="loginForm.get('password')">
       <input
         type="password"
-        (change)="inputChange($event)"
+        (change)="inputChange($event, 'password')"
         placeholder="Password"
         formControlName="password"
       />
