@@ -8,6 +8,7 @@ import { FormComponent } from './components/form/form.component';
 import { InfoMessageComponent } from './components/info-message/info-message.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { TimeAgoPipe } from 'time-ago-pipe';
+import { LoaderComponent } from './components/loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { TimeAgoPipe } from 'time-ago-pipe';
     FormComponent,
     InfoMessageComponent,
     PaginationComponent,
+    LoaderComponent,
     TimeAgoPipe
   ],
   imports: [CommonModule, FontAwesomeModule],
@@ -27,6 +29,7 @@ import { TimeAgoPipe } from 'time-ago-pipe';
     FormComponent,
     InfoMessageComponent,
     PaginationComponent,
+    LoaderComponent,
     TimeAgoPipe
   ]
 })

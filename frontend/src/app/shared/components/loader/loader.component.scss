@@ -1,0 +1,17 @@
+@import 'colors.scss';
+
+:host {
+  position: absolute;
+  top: 0;
+  height: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba($main, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  fa-icon {
+    color: $white;
+  }
+}

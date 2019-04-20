@@ -23,6 +23,7 @@ import { TradesRoutingModule } from './trades/trades-routing.module';
 import { TradesModule } from './trades/trades.module';
 import { MediaInfosModule } from './media-infos/media-infos.module';
 import { MediaInfosRoutingModule } from './media-infos/media-infos-routing.module';
+import { GlobalState } from './shared/state/global.state';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,7 @@ import { MediaInfosRoutingModule } from './media-infos/media-infos-routing.modul
     }),
     NgxsLoggerPluginModule.forRoot({ logger: console, collapsed: false }),
     NgxsRouterPluginModule.forRoot(),
-    NgxsModule.forRoot([], {
+    NgxsModule.forRoot([GlobalState], {
       developmentMode: !environment.production
     }),
     FontAwesomeModule,
