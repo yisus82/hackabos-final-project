@@ -41,4 +41,8 @@ export class RegisterComponent implements OnInit {
   markFormGroupAsTouched(formGroup: FormGroup) {
     Object.values(formGroup.controls).forEach(control => control.markAsTouched());
   }
+
+  inputChange(data) {
+    data.control.setValue(data.$event.target.value);
+  }
 }

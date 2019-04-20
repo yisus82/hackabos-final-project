@@ -5,10 +5,20 @@
       <input type="text" placeholder="Username" formControlName="username" />
     </app-form-control>
     <app-form-control [control]="registerForm.get('email')">
-      <input type="email" placeholder="Email" formControlName="email" />
+      <input
+        type="email"
+        (change)="inputChange($event)"
+        placeholder="Email"
+        formControlName="email"
+      />
     </app-form-control>
     <app-form-control [control]="registerForm.get('password')">
-      <input type="password" placeholder="Password" formControlName="password" />
+      <input
+        type="password"
+        (change)="inputChange($event)"
+        placeholder="Password"
+        formControlName="password"
+      />
     </app-form-control>
     <app-form-control [control]="registerForm.get('confirmPassword')" [group]="registerForm">
       <input type="password" placeholder="Confirm password" formControlName="confirmPassword" />

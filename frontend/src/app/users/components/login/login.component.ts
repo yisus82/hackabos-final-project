@@ -25,4 +25,8 @@ export class LoginComponent {
       this.store.dispatch(new Login(this.loginForm.value));
     }
   }
+
+  inputChange(data) {
+    data.control.setValue(data.$event.target.value);
+  }
 }
