@@ -8,7 +8,7 @@ Or you can download/clone this repo and do the following to install it an run it
 
 - An account on [Sendgrid](https://sendgrid.com).
 - An account on [Cloudinary](https://cloudinary.com).
-- An existing MongoDB server. It could be locally installed or an online server.
+- An existing MongoDB server. It could be one locally installed or an online server.
 
 ## Backend
 
