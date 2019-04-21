@@ -11,8 +11,5 @@
   "bugs": {
     "url": "https://github.com/yisus82/hackabos-final-project/issues"
   },
-  "homepage": "https://github.com/yisus82/hackabos-final-project#readme",
-  "dependencies": {
-    "global": "^4.3.2"
-  }
+  "homepage": "https://github.com/yisus82/hackabos-final-project#readme"
 }
