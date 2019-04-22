@@ -123,7 +123,7 @@ export class TradesState {
 
   @Action(CreateTradeSuccess)
   createTradeSucess({ dispatch }: StateContext<Trades>) {
-    dispatch(new Navigate(['/trades']));
+    dispatch(new GetTrades(1));
   }
 
   @Action([
