@@ -13,7 +13,7 @@ const tradeRepository = require('../../repositories/trade-repository');
 async function validateSchema(payload) {
   const schema = {
     title: Joi.string().required(),
-    text: Joi.string().required()
+    text: Joi.string().required(),
   };
 
   return Joi.validate(payload, schema);

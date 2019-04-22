@@ -12,7 +12,7 @@ const mediaInfoRepository = require('../../repositories/media-info-repository');
  */
 async function validate(payload) {
   const schema = {
-    id: Joi.objectId().required()
+    id: Joi.objectId().required(),
   };
 
   return Joi.validate(payload, schema);

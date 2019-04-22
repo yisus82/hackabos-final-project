@@ -15,7 +15,7 @@ async function validate(payload) {
   const schema = {
     password: Joi.string()
       .regex(/^[a-zA-Z0-9]{3,30}$/)
-      .required()
+      .required(),
   };
 
   return Joi.validate(payload, schema);

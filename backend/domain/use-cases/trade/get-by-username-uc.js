@@ -18,7 +18,7 @@ async function validate(payload) {
       .optional(),
     limit: Joi.number()
       .positive()
-      .optional()
+      .optional(),
   };
 
   return Joi.validate(payload, schema);
