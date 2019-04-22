@@ -16,9 +16,16 @@
     <p class="error-message" *ngIf="control.hasError('malformedUrl')">
       <fa-icon [icon]="errorIcon"> </fa-icon> This is not a valid URL
     </p>
+    <p class="error-message" *ngIf="control.hasError('invalidPassword')">
+      <fa-icon [icon]="errorIcon"> </fa-icon> Passwords must have 3-30 letters and/or numbers
+    </p>
+    <p class="error-message" *ngIf="control.hasError('invalidUsername')">
+      <fa-icon [icon]="errorIcon"> </fa-icon> Usernames must have 5-20 lowercase letters and/or
+      numbers
+    </p>
   </ng-container>
   <ng-container *ngIf="group?.invalid && (group?.dirty || group?.touched)">
-    <p class="error-message" *ngIf="control.valid && group.hasError('passwordMismatch')">
+    <p class="error-message" *ngIf="group.hasError('passwordMismatch')">
       <fa-icon [icon]="errorIcon"> </fa-icon> Password and confirmation should match
     </p>
   </ng-container>

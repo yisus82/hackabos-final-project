@@ -3,6 +3,7 @@ import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MailValidator } from '../../validators/mail.validator';
 import { Store } from '@ngxs/store';
 import { Login } from '../../store/auth/auth.actions';
+import { PasswordValidator } from '../../validators/password.validator';
 
 @Component({
   selector: 'app-login',
@@ -13,7 +14,7 @@ export class LoginComponent {
   loginForm = this.fb.group(
     {
       email: ['', [Validators.required, MailValidator]],
-      password: ['', [Validators.required]]
+      password: ['', [Validators.required, PasswordValidator]]
     },
     { updateOn: 'blur' }
   );

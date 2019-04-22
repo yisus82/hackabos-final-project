@@ -4,6 +4,8 @@ import { MatchPasswordValidator } from '../../validators/match-password.validato
 import { MailValidator } from '../../validators/mail.validator';
 import { Store, Actions, ofAction } from '@ngxs/store';
 import { Register, RegisterSuccess } from '../../store/auth/auth.actions';
+import { UsernameValidator } from '../../validators/username.validator';
+import { PasswordValidator } from '../../validators/password.validator';
 
 @Component({
   selector: 'app-register',
@@ -13,10 +15,10 @@ import { Register, RegisterSuccess } from '../../store/auth/auth.actions';
 export class RegisterComponent implements OnInit {
   registerForm = this.fb.group(
     {
-      username: ['', [Validators.required]],
+      username: ['', [Validators.required, UsernameValidator]],
       email: ['', [Validators.required, MailValidator]],
-      password: ['', [Validators.required]],
-      confirmPassword: ['', [Validators.required]]
+      password: ['', [Validators.required, PasswordValidator]],
+      confirmPassword: ['', [Validators.required, PasswordValidator]]
     },
     {
       updateOn: 'blur',

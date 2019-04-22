@@ -3,6 +3,7 @@ import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { MatchPasswordValidator } from '../../validators/match-password.validator';
 import { Store, Actions, ofAction } from '@ngxs/store';
 import { ChangePassword, ChangePasswordSuccess } from '../../store/auth/auth.actions';
+import { PasswordValidator } from '../../validators/password.validator';
 
 @Component({
   selector: 'app-password',
@@ -14,8 +15,8 @@ export class PasswordComponent implements OnInit {
 
   passwordForm = this.fb.group(
     {
-      password: ['', [Validators.required]],
-      confirmPassword: ['', [Validators.required]]
+      password: ['', [Validators.required, PasswordValidator]],
+      confirmPassword: ['', [Validators.required, PasswordValidator]]
     },
     {
       updateOn: 'blur',
