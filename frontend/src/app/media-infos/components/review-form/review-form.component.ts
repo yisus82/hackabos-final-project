@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Store, Actions, ofAction } from '@ngxs/store';
 import { CreateReviewSuccess, CreateReview } from '../../store/media-infos.actions';
 
@@ -25,10 +25,16 @@ export class ReviewFormComponent implements OnInit {
   }
 
   createReview() {
-    if (this.reviewForm.valid) {
-      this.store.dispatch(
-        new CreateReview({ mediaInfo: this.mediaInfoID, ...this.reviewForm.value })
-      );
+    if (!this.reviewForm.valid) {
+      this.markFormGroupAsTouched(this.reviewForm);
+      return;
     }
+    this.store.dispatch(
+      new CreateReview({ mediaInfo: this.mediaInfoID, ...this.reviewForm.value })
+    );
+  }
+
+  markFormGroupAsTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => control.markAsTouched());
   }
 }

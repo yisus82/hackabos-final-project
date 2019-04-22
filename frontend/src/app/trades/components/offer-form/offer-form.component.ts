@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Store, Actions, ofAction } from '@ngxs/store';
 import { AddOffer, AddOfferSuccess } from '../../store/trades.actions';
 
@@ -24,8 +24,14 @@ export class OfferFormComponent implements OnInit {
   }
 
   offer() {
-    if (this.offerForm.valid) {
-      this.store.dispatch(new AddOffer(this.offerForm.value, this.tradeID));
+    if (!this.offerForm.valid) {
+      this.markFormGroupAsTouched(this.offerForm);
+      return;
     }
+    this.store.dispatch(new AddOffer(this.offerForm.value, this.tradeID));
+  }
+
+  markFormGroupAsTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => control.markAsTouched());
   }
 }

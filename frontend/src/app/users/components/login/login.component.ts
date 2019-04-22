@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { MailValidator } from '../../validators/mail.validator';
 import { Store } from '@ngxs/store';
 import { Login } from '../../store/auth/auth.actions';
@@ -21,9 +21,15 @@ export class LoginComponent {
   constructor(private fb: FormBuilder, private store: Store) {}
 
   login() {
-    if (this.loginForm.valid) {
-      this.store.dispatch(new Login(this.loginForm.value));
+    if (!this.loginForm.valid) {
+      this.markFormGroupAsTouched(this.loginForm);
+      return;
     }
+    this.store.dispatch(new Login(this.loginForm.value));
+  }
+
+  markFormGroupAsTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => control.markAsTouched());
   }
 
   inputChange(event, controlName) {

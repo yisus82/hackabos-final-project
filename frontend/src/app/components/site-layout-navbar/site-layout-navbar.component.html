@@ -2,8 +2,14 @@
 <nav [style.display]="display">
   <ul>
     <li id="avatar">
-      <app-avatar [imageUrl]="avatarURL"></app-avatar>
-      <p>{{ username }}</p>
+      <a routerLink="/account" *ngIf="username !== 'Guest'">
+        <app-avatar [imageUrl]="avatarURL"></app-avatar>
+        <p>{{ username }}</p></a
+      >
+      <a routerLink="/users/login" *ngIf="username === 'Guest'">
+        <app-avatar [imageUrl]="avatarURL"></app-avatar>
+        <p>{{ username }}</p></a
+      >
     </li>
     <li><a routerLink="/reviews" routerLinkActive="active">Reviews</a></li>
     <li *ngIf="username !== 'Guest'">
@@ -18,7 +24,7 @@
       <a routerLink="/account" routerLinkActive="active">Account</a>
     </li>
     <li *ngIf="username !== 'Guest'">
-      <a (click)="logout()">Logout</a>
+      <a routerLink="/reviews" (click)="logout()">Logout</a>
     </li>
     <li *ngIf="username === 'Guest'">
       <a routerLink="/users/login" routerLinkActive="active">Login</a>

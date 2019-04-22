@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 import { Store, ofAction, Actions } from '@ngxs/store';
 import { AddComment, AddCommentSuccess } from '../../store/reviews.actions';
 
@@ -24,8 +24,14 @@ export class CommentFormComponent implements OnInit {
   }
 
   comment() {
-    if (this.commentForm.valid) {
-      this.store.dispatch(new AddComment(this.commentForm.value, this.reviewID));
+    if (!this.commentForm.valid) {
+      this.markFormGroupAsTouched(this.commentForm);
+      return;
     }
+    this.store.dispatch(new AddComment(this.commentForm.value, this.reviewID));
+  }
+
+  markFormGroupAsTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => control.markAsTouched());
   }
 }

@@ -46,7 +46,6 @@ export class AuthState {
   logout({ setState, dispatch }: StateContext<Auth>) {
     this.authService.logout();
     setState(null);
-    dispatch(new Navigate(['/reviews/list/1']));
   }
 
   @Action(Register)

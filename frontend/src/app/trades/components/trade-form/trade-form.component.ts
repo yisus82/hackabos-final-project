@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormBuilder } from '@angular/forms';
+import { Validators, FormBuilder, FormGroup } from '@angular/forms';
 import { Store, Actions, ofAction } from '@ngxs/store';
 import { CreateTrade, CreateTradeSuccess } from '../../store/trades.actions';
 
@@ -24,8 +24,14 @@ export class TradeFormComponent implements OnInit {
   }
 
   create() {
-    if (this.tradeForm.valid) {
-      this.store.dispatch(new CreateTrade(this.tradeForm.value));
+    if (!this.tradeForm.valid) {
+      this.markFormGroupAsTouched(this.tradeForm);
+      return;
     }
+    this.store.dispatch(new CreateTrade(this.tradeForm.value));
+  }
+
+  markFormGroupAsTouched(formGroup: FormGroup) {
+    Object.values(formGroup.controls).forEach(control => control.markAsTouched());
   }
 }

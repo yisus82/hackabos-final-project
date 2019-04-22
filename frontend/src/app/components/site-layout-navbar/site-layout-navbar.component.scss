@@ -20,14 +20,6 @@
       padding: 0;
       min-width: 110px;
 
-      &#avatar {
-        width: 100%;
-        p {
-          margin-top: 1rem;
-          text-align: center;
-        }
-      }
-
       a {
         background-color: $main;
         color: $white;
@@ -38,6 +30,19 @@
         width: 100%;
         &.active {
           background-color: $contrast;
+        }
+      }
+
+      &#avatar {
+        width: 100%;
+        a {
+          background-color: initial;
+          padding: 0;
+          display: initial;
+          p {
+            margin-top: 1rem;
+            text-align: center;
+          }
         }
       }
     }
