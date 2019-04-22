@@ -25,8 +25,14 @@
     </p>
   </ng-container>
   <ng-container *ngIf="group?.invalid && (group?.dirty || group?.touched)">
-    <p class="error-message" *ngIf="group.hasError('passwordMismatch')">
+    <p class="error-message" *ngIf="control.valid && group.hasError('passwordMismatch')">
       <fa-icon [icon]="errorIcon"> </fa-icon> Password and confirmation should match
+    </p>
+    <p class="error-message" *ngIf="control.hasError('required')">
+      <fa-icon [icon]="errorIcon"> </fa-icon> This field is mandatory
+    </p>
+    <p class="error-message" *ngIf="control.hasError('invalidPassword')">
+      <fa-icon [icon]="errorIcon"> </fa-icon> Passwords must have 3-30 letters and/or numbers
     </p>
   </ng-container>
 </div>
