@@ -40,7 +40,7 @@ async function login(accountData) {
   const userProfileData = await userRepository.findByEmail(accountData.email);
 
   if (!userProfileData) {
-    throw createMediAddictedError(404, 'Email not found in DB');
+    throw createMediAddictedError(401, 'Incorrect email and/or password');
   }
 
   if (!userProfileData.verifiedAt) {
@@ -48,7 +48,7 @@ async function login(accountData) {
   }
 
   if (!(await bcrypt.compare(accountData.password, userProfileData.password))) {
-    throw createMediAddictedError(401, 'Incorrect password');
+    throw createMediAddictedError(401, 'Incorrect email and/or password');
   }
 
   const payloadJWT = {
