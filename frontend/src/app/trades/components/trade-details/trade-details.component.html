@@ -9,7 +9,6 @@
     </div>
     <p>{{ tradeDetails.text }}</p>
   </div>
-  <hr />
   <app-offer-form
     [tradeID]="tradeDetails._id"
     *ngIf="currentUser && currentUser.token"
