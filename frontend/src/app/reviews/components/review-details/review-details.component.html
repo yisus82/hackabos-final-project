@@ -23,10 +23,7 @@
     <p>
       {{ reviewDetails.text }}
     </p>
-    <a [routerLink]="'/reviews/' + reviewDetails._id">Go to review details</a>
   </div>
-  <a routerLink="/infos/{{ reviewDetails.mediaInfo._id }}">Go to media info page</a>
-  <hr />
   <app-comment-form
     [reviewID]="reviewDetails._id"
     *ngIf="currentUser && currentUser.token"
