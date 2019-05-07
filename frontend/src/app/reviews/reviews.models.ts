@@ -1,3 +1,5 @@
+import { MediaInfoDetails } from '../media-infos/media-infos.models';
+
 export interface Reviews {
   reviewsInfo: ReviewsInfo;
   reviewDetails: ReviewDetails;
@@ -16,7 +18,7 @@ export interface ReviewDetails {
   title: string;
   text: string;
   author: string;
-  mediaInfo: string;
+  mediaInfo: MediaInfoDetails;
   comments: Comment[];
   createdAt: Date;
   updatedAt: Date;

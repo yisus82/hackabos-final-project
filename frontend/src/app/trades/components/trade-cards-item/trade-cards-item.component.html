@@ -1,14 +1,16 @@
 <article>
   <header>
     <h1>
-      {{ trade.title }}
+      <a [routerLink]="'/trades/' + trade._id">
+        {{ trade.title }}
+      </a>
     </h1>
     <p>
       Made by <a [routerLink]="'/users/user/' + trade.author">{{ trade.author }}</a>
     </p>
     <p class="date">{{ trade.createdAt | timeAgo }}</p>
   </header>
-  <p>
+  <p class="trade-text">
     {{ trade.text }}
   </p>
   <a [routerLink]="'/trades/' + trade._id">Go to trade details</a>

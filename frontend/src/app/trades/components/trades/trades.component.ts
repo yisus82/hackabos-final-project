@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { TradesState } from '../../store/trades.state';
 import { Observable } from 'rxjs';
@@ -11,7 +11,7 @@ import { GetTradesByUsername, GetTrades } from '../../store/trades.actions';
   templateUrl: './trades.component.html',
   styleUrls: ['./trades.component.scss']
 })
-export class TradesComponent implements OnInit {
+export class TradesComponent implements OnInit, OnDestroy {
   @Select(TradesState.getTrades) tradesInfo$: Observable<TradesInfo>;
 
   resources: string;
@@ -28,5 +28,9 @@ export class TradesComponent implements OnInit {
         this.store.dispatch(new GetTrades(routeParams.page));
       }
     });
+  }
+
+  ngOnDestroy() {
+    this.store.reset({ auth: this.store.selectSnapshot(state => state.auth) });
   }
 }

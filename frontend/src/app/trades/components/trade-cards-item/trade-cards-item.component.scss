@@ -1,12 +1,15 @@
+@import 'colors.scss';
+
 /* Generic styles */
 
 :host {
   article {
-    border: 1px solid white;
+    border: 1px solid $white;
     margin: 1rem auto;
     width: 90%;
     header {
-      background-color: #0933bd;
+      background-color: $dark;
+      border-bottom: 2px solid $white;
       display: flex;
       flex-direction: column;
       width: 100%;
@@ -35,6 +38,10 @@
 
     p {
       padding: 0.5rem;
+      &.trade-text {
+        height: 150px;
+        overflow: hidden;
+      }
     }
 
     a {

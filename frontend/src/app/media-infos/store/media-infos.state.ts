@@ -91,10 +91,12 @@ export class MediaInfosState {
 
   @Action(CreateReview)
   createReview({ dispatch }: StateContext<MediaInfos>, { review }: CreateReview) {
-    return this.mediaInfosService.createReview(review.mediaInfo, review.title, review.text).pipe(
-      tap(() => dispatch(new CreateReviewSuccess(review.mediaInfo))),
-      catchError(error => dispatch(new CreateReviewFailed(error.error)))
-    );
+    return this.mediaInfosService
+      .createReview(review.mediaInfo._id, review.title, review.text)
+      .pipe(
+        tap(() => dispatch(new CreateReviewSuccess(review.mediaInfo._id))),
+        catchError(error => dispatch(new CreateReviewFailed(error.error)))
+      );
   }
 
   @Action(CreateReviewSuccess)

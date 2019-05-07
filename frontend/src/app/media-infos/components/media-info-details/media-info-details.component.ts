@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { MediaInfosState } from '../../store/media-infos.state';
 import { Observable } from 'rxjs';
@@ -12,7 +12,7 @@ import { GetReviewsByMediaInfo } from 'src/app/reviews/store/reviews.actions';
   templateUrl: './media-info-details.component.html',
   styleUrls: ['./media-info-details.component.scss']
 })
-export class MediaInfoDetailsComponent implements OnInit {
+export class MediaInfoDetailsComponent implements OnInit, OnDestroy {
   @Select(MediaInfosState.getMediaInfoDetails) mediaInfoDetails$: Observable<MediaInfoDetails>;
   currentUser = this.store.selectSnapshot(state => state.auth);
   currentPage = 1;
@@ -24,5 +24,9 @@ export class MediaInfoDetailsComponent implements OnInit {
       this.store.dispatch(new GetMediaInfo(routeParams.id));
       this.store.dispatch(new GetReviewsByMediaInfo(this.currentPage, routeParams.id));
     });
+  }
+
+  ngOnDestroy() {
+    this.store.reset({ auth: this.store.selectSnapshot(state => state.auth) });
   }
 }

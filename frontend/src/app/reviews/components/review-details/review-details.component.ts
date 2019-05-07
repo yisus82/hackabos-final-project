@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { ReviewsState } from '../../store/reviews.state';
 import { Observable } from 'rxjs';
@@ -11,7 +11,7 @@ import { GetReview } from '../../store/reviews.actions';
   templateUrl: './review-details.component.html',
   styleUrls: ['./review-details.component.scss']
 })
-export class ReviewDetailsComponent implements OnInit {
+export class ReviewDetailsComponent implements OnInit, OnDestroy {
   @Select(ReviewsState.getReviewDetails) reviewDetails$: Observable<ReviewDetails>;
   currentUser = this.store.selectSnapshot(state => state.auth);
 
@@ -21,6 +21,10 @@ export class ReviewDetailsComponent implements OnInit {
     this.route.params.subscribe(routeParams => {
       this.store.dispatch(new GetReview(routeParams.id));
     });
+  }
+
+  ngOnDestroy() {
+    this.store.reset({ auth: this.store.selectSnapshot(state => state.auth) });
   }
 
   reverseArray(arr: any[]) {

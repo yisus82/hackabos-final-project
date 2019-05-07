@@ -1,14 +1,26 @@
 <article>
   <header>
+    <div class="mediaInfo">
+      <h1>
+        <a routerLink="/infos/{{ review.mediaInfo._id }}">
+          {{ review.mediaInfo.title }}
+        </a>
+      </h1>
+      <p>
+        {{ review.mediaInfo.category }}
+      </p>
+    </div>
     <h1>
-      {{ review.title }}
+      <a [routerLink]="'/reviews/' + review._id">
+        {{ review.title }}
+      </a>
     </h1>
     <p>
       Made by <a [routerLink]="'/users/user/' + review.author">{{ review.author }}</a>
     </p>
     <p class="date">{{ review.createdAt | timeAgo }}</p>
   </header>
-  <p>
+  <p class="review-text">
     {{ review.text }}
   </p>
   <a [routerLink]="'/reviews/' + review._id">Go to review details</a>

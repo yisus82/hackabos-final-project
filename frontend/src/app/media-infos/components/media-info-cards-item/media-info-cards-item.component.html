@@ -1,7 +1,9 @@
 <article>
   <header>
     <h1>
-      {{ mediaInfo.title }}
+      <a [routerLink]="'/infos/' + mediaInfo._id">
+        {{ mediaInfo.title }}
+      </a>
     </h1>
     <p>
       {{ mediaInfo.category }}

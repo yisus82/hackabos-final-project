@@ -41,7 +41,7 @@ import { SetError } from '../../error/store/error.actions';
       title: '',
       text: '',
       author: '',
-      mediaInfo: '',
+      mediaInfo: null,
       comments: [],
       createdAt: new Date(),
       updatedAt: new Date()

@@ -1,15 +1,31 @@
 <div *ngIf="(reviewDetails$ | async) as reviewDetails">
   <div class="details">
-    <div class="header">
-      <span>{{ reviewDetails.title }}</span>
-      <span>
-        by <a [routerLink]="'/users/user/' + reviewDetails.author">{{ reviewDetails.author }}</a>
-      </span>
-      <span>{{ reviewDetails.createdAt | timeAgo }}</span>
-    </div>
-    <p>{{ reviewDetails.text }}</p>
+    <header>
+      <div class="mediaInfo">
+        <h1>
+          <a routerLink="/infos/{{ reviewDetails.mediaInfo._id }}">
+            {{ reviewDetails.mediaInfo.title }}
+          </a>
+        </h1>
+        <p>
+          {{ reviewDetails.mediaInfo.category }}
+        </p>
+      </div>
+      <h1>
+        {{ reviewDetails.title }}
+      </h1>
+      <p>
+        Made by
+        <a [routerLink]="'/users/user/' + reviewDetails.author">{{ reviewDetails.author }}</a>
+      </p>
+      <p class="date">{{ reviewDetails.createdAt | timeAgo }}</p>
+    </header>
+    <p>
+      {{ reviewDetails.text }}
+    </p>
+    <a [routerLink]="'/reviews/' + reviewDetails._id">Go to review details</a>
   </div>
-  <a routerLink="/infos/{{ reviewDetails.mediaInfo }}">Go to media info page</a>
+  <a routerLink="/infos/{{ reviewDetails.mediaInfo._id }}">Go to media info page</a>
   <hr />
   <app-comment-form
     [reviewID]="reviewDetails._id"

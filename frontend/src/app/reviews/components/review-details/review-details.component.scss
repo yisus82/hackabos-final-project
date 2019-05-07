@@ -8,23 +8,43 @@
 
   .details {
     border: 2px solid $white;
-    .header {
+    header {
       background-color: $dark;
       border-bottom: 2px solid $white;
       display: flex;
       flex-direction: column;
-      padding: 0.5rem;
-      span {
+      width: 100%;
+      .mediaInfo {
+        border-bottom: 2px solid $white;
+        p {
+          text-align: center;
+        }
+      }
+      h1 {
+        font-size: 1.4rem;
+        margin: 0.5rem;
+        text-align: center;
+      }
+
+      p {
+        padding: 0.5rem;
         text-align: center;
         a {
           display: inline;
+          margin: 0;
+          text-decoration: none;
+          &:hover {
+            text-decoration: underline;
+          }
+        }
+        &.date {
+          margin-top: 0;
         }
       }
     }
-
-    p {
-      padding: 1rem;
-    }
+  }
+  p {
+    padding: 0.5rem;
   }
   a {
     display: block;

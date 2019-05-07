@@ -10,7 +10,7 @@ const commentSchema = new Schema(
   {
     text: String,
     author: String,
-    __v: { type: Number, select: false },
+    __v: { type: Number, select: false }
   },
   { timestamps: true }
 );
@@ -20,9 +20,12 @@ const reviewSchema = new Schema(
     title: String,
     text: String,
     author: String,
-    mediaInfo: ObjectId,
+    mediaInfo: {
+      type: ObjectId,
+      ref: 'MediaInfo'
+    },
     comments: [commentSchema],
-    __v: { type: Number, select: false },
+    __v: { type: Number, select: false }
   },
   { timestamps: true }
 );
@@ -47,7 +50,7 @@ class Review {
       text,
       author,
       mediaInfo,
-      comments: [],
+      comments: []
     };
     await this.model.create(reviewData);
   }
@@ -58,7 +61,10 @@ class Review {
    * @returns {Object} Review's data
    */
   async findByID(id) {
-    return this.model.findById(id).lean();
+    return this.model
+      .findById(id)
+      .populate('mediaInfo')
+      .lean();
   }
 
   /**
@@ -75,6 +81,7 @@ class Review {
       lean: true,
       leanWithId: false,
       sort: { createdAt: -1 },
+      populate: 'mediaInfo'
     };
     return this.model.paginate({}, options);
   }
@@ -94,6 +101,7 @@ class Review {
       lean: true,
       leanWithId: false,
       sort: { createdAt: -1 },
+      populate: 'mediaInfo'
     };
     return this.model.paginate({ mediaInfo }, options);
   }
@@ -113,6 +121,7 @@ class Review {
       lean: true,
       leanWithId: false,
       sort: { createdAt: -1 },
+      populate: 'mediaInfo'
     };
     return this.model.paginate({ author: username }, options);
   }
@@ -126,7 +135,7 @@ class Review {
   async addComment(reviewID, text, author) {
     const commentData = {
       text,
-      author,
+      author
     };
     await this.model.findByIdAndUpdate(reviewID, { $push: { comments: commentData } });
   }
