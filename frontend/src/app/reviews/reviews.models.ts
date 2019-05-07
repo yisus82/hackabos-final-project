@@ -37,6 +37,12 @@ export interface ReviewsInfo {
   nextPage?: number;
 }
 
+export interface ReviewRequest {
+  title: string;
+  text: string;
+  mediaInfo: string;
+}
+
 export interface CommentRequest {
   text: string;
 }

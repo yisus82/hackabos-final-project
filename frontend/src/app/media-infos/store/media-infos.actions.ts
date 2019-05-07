@@ -1,6 +1,6 @@
 import { Error } from '../../error/error.models';
 import { MediaInfoDetails, MediaInfosInfo } from '../media-infos.models';
-import { ReviewDetails } from 'src/app/reviews/reviews.models';
+import { ReviewDetails, ReviewRequest } from 'src/app/reviews/reviews.models';
 
 export class GetMediaInfo {
   static readonly type = '[MediaInfos] GetMediaInfo';
@@ -34,7 +34,7 @@ export class GetMediaInfosFailed {
 
 export class CreateReview {
   static readonly type = '[MediaInfos] CreateReview';
-  constructor(public review: ReviewDetails) {}
+  constructor(public review: ReviewRequest) {}
 }
 
 export class CreateReviewSuccess {
